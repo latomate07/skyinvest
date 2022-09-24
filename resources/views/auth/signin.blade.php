@@ -40,7 +40,7 @@
                     </div>
                     <div class="input_field select_option">
                         <select name="country">
-                            <option>Selectionnez un pays</option>
+                            <option>Selectionnez votre pays de résidence</option>
                             <option value="France">France</option>
                             <option value="Belgique">Belgique</option>
                             <option value="Canada">Canada</option>
