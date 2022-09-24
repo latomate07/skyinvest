@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Client\DashboardController;
+use App\Http\Controllers\Client\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,9 +32,12 @@ Route::group(['middleware' => 'guest'], function() {
 
 Route::group(['middleware' => 'auth'], function() {
     // Logout user
-    Route::get('/userWish/logout', [AuthController::class, 'logout'])->name('auth.logout');
+    Route::get('/userwish/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
     // Access Dashboard
     Route::get('/dashboard', [DashboardController::class, 'showDashboardPage'])->name('client.dashboard');
+
+    // Access Project Publish Page
+    Route::get('/projet/publication', [ProjectController::class, 'showProjectPage'])->name('client.project.publish');
 });
 
