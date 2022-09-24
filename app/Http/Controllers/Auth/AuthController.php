@@ -11,7 +11,7 @@ class AuthController extends Controller
             return back();
         }
 
-        return view("auth.login");
+        return view('auth.login');
     }
 
     public function signin() {
@@ -19,6 +19,6 @@ class AuthController extends Controller
             return back();
         }
         
-        return view("auth.signin");
+        return view('auth.signin');
     }
 }
