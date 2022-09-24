@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Client;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProjectController extends Controller
@@ -17,8 +19,10 @@ class ProjectController extends Controller
     /**
      * Store project
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
+        $validated = $request->validated();
+        
     }
 
     /**
@@ -31,21 +35,21 @@ class ProjectController extends Controller
     /**
      * Update project
      */
-    public function update()
+    public function update(UpdateProjectRequest $request)
     {
     }
 
     /**
      * Edit project
      */
-    public function edit()
+    public function edit($id)
     {
     }
 
     /**
      * SoftDelete project
      */
-    public function delete()
+    public function delete(Request $request)
     {
     }
 }
