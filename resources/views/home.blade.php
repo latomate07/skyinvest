@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-
 <div class="main">
     <div class="left">
         @include('components.home.left-aside')
@@ -27,5 +26,4 @@
         @include('components.home.right-aside')
     </div>
 </div>
-
 @endsection
