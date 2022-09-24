@@ -126,7 +126,7 @@
                                 <a hred="javascript:void(0)" class="viewMore"><i class="fa fa-compass"></i></a>
                                 <div class="block-content">
                                         <ul class="tools-list">
-                                                <li><a href="dashboard.php"><i class="fa fa-user"></i><h5>Profil</h5></a></li>
+                                                <li><a href="{{ route('client.dashboard') }}"><i class="fa fa-user"></i><h5>Profil</h5></a></li>
                                                 <li><a><i class="fa fa-file-signature"></i><h5>Contrat</h5></a></li>
                                                 <li><a><i class="fa fa-users"></i><h5>Inviter un ami</h5></a></li>
                                                 <li><a><i class="fa fa-gear"></i><h5>Paramètre</h5></a></li>
