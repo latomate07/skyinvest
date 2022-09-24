@@ -56,7 +56,7 @@
                                   <!-- Useful Link and Help --->
                                   <h2 class="subtitle forUsefulLinks">Navigation</h2>
                                   <ul class="usefulLinks">
-                                        <li><a class="listItem" href="/dashboard.php"><i class="fa fa-arrow-right" style="font-size:20px; margin-right:5px;"></i>Tableau de bord</a></li>
+                                        <li><a class="listItem" href="{{ route('client.dashboard') }}"><i class="fa fa-arrow-right" style="font-size:20px; margin-right:5px;"></i>Tableau de bord</a></li>
                                         <li><a class="listItem" href="#"><i class="fa fa-arrow-right" style="font-size:20px; margin-right:5px;"></i>Mes contrats</a></li>
                                         <li><a class="listItem" href="#"><i class="fa fa-arrow-right" style="font-size:20px; margin-right:5px;"></i>Abonnement</a></li>
                                         <li><a class="listItem" href="#"><i class="fa fa-arrow-right" style="font-size:20px; margin-right:5px;"></i>Paramètre</a></li>
@@ -126,7 +126,7 @@
                                 <a hred="javascript:void(0)" class="viewMore"><i class="fa fa-compass"></i></a>
                                 <div class="block-content">
                                         <ul class="tools-list">
-                                                <li><a href="{{ route('client.dashboard') }}"><i class="fa fa-user"></i><h5>Profil</h5></a></li>
+                                                <li><a href="{{ route('client.dashboard') }}"><i class="fa fa-user"></i><h5>Tableau de bord</h5></a></li>
                                                 <li><a><i class="fa fa-file-signature"></i><h5>Contrat</h5></a></li>
                                                 <li><a><i class="fa fa-users"></i><h5>Inviter un ami</h5></a></li>
                                                 <li><a><i class="fa fa-gear"></i><h5>Paramètre</h5></a></li>
