@@ -31,7 +31,7 @@
                                                 <a class="btn" href="#">Commencer</a>
                                                 <!-- SInon -->
                                                 <!-- <a class="btn" href="#">Remplir le profil</a> -->
-                                                <a class="noBtn" href="/logout.php" onclick="destroySession()">Déconnexion</a>
+                                                <a class="noBtn" href="{{ route('auth.logout') }}" onclick="destroySession()">Déconnexion</a>
                                         </div>
                                 </div>   
                             @elseif (auth()->check() && auth()->user()->role == "Entreprise")
@@ -44,7 +44,7 @@
                                         <!-- <p class="content">Votre profil n'est pas rempli, veuillez le remplir afin d'investir sur <span class="colorThis">TahirouTest</span></p> -->
                                         <div class="calltoaction">
                                                 <!-- Si profil utilisateur rempli => afficher ce qui suit -->
-                                                <a class="btn" href="/post-project.php">Commencer</a>
+                                                <a class="btn" href="{{ route('client.project.publish') }}">Commencer</a>
                                                 <!-- SInon -->
                                                 <!-- <a class="btn" href="#">Remplir le profil</a> -->
                                                 <a class="noBtn" href="{{ route('auth.logout') }}" onclick="destroySession()">Déconnexion</a>
