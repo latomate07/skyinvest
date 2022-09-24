@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
+});
+
+Route::group(['middleware' => 'guest'], function(){
+    Route::get('/connexion', [AuthController::class, 'login'])->name('login');
+    Route::get('/inscription', [AuthController::class, 'signin'])->name('signin');
 });
