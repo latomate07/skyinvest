@@ -7,9 +7,8 @@
             <h2>Inscription</h2>
             </div>
             <div class="row clearfix">
-            <div class=""> 
-                <form action="">
-                @method('post')
+            <div> 
+                <form action="{{ route('auth.signin') }}" method="POST">
                 @csrf
                 @foreach ($errors->all() as $error)
                     <p class="error">{{ $error }}</p>
@@ -23,42 +22,42 @@
                 <div class="row clearfix">
                     <div class="col_half">
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                        <input type="text" name="userFullName" placeholder="Nom complet" />
+                        <input type="text" name="name" placeholder="Nom complet" />
                     </div>
                     </div>
                     <div class="col_half">
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                        <input type="text" name="userPseudo" placeholder="Nom d'utilisateur" required />
+                        <input type="text" name="pseudo" placeholder="Nom d'utilisateur" required />
                     </div>
                     </div>
                 </div>
                     <div class="input_field radio_option">
                         <h5>Type d'utilisateur : </h5>
-                        <input type="radio" name="userRole" id="rd1" value="Entreprise" checked>
+                        <input type="radio" name="role" id="rd1" value="Entreprise" checked>
                         <label for="rd1">Entreprise</label>
-                        <input type="radio" name="userRole" id="rd2" value="Investisseur">
+                        <input type="radio" name="role" id="rd2" value="Investisseur">
                         <label for="rd2">Investisseur</label>
                     </div>
                     <div class="input_field select_option">
-                        <select name="userCountry">
-                        <option>Selectionnez un pays</option>
-                        <option value="France">France</option>
-                        <option value="Belgique">Belgique</option>
-                        <option value="Canada">Canada</option>
-                        <option value="Suisse">Suisse</option>
-                        <option value="Maroc">Maroc</option>
-                        <option value="Algérie">Algérie</option>
-                        <option value="Kenya">Kenya</option>
-                        <option value="Afrique du sud">Afrique du sud</option>
+                        <select name="country">
+                            <option>Selectionnez un pays</option>
+                            <option value="France">France</option>
+                            <option value="Belgique">Belgique</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Suisse">Suisse</option>
+                            <option value="Maroc">Maroc</option>
+                            <option value="Algérie">Algérie</option>
+                            <option value="Kenya">Kenya</option>
+                            <option value="Afrique du sud">Afrique du sud</option>
                         </select>
                         <div class="select_arrow"></div>
                     </div>
                     <div class="input_field checkbox_option">
-                        <input type="checkbox" id="cb1">
+                        <input type="checkbox" id="cb1" name="isAgreedWithTerms">
                         <label for="cb1">J'accepte les termes et conditions</label>
                     </div>
                     <div class="input_field checkbox_option">
-                        <input type="checkbox" id="cb2">
+                        <input type="checkbox" id="cb2" name="wishNewsletter">
                         <label for="cb2">Je veux recevoir la newsletter</label>
                     </div>
                 <input class="button" type="submit" value="S'inscrire" name="register"/>

@@ -21,7 +21,7 @@
                             @if (auth()->check() && auth()->user()->role == "Investisseur")
                                 <!-- Visible pour les utilisateurs connecté et ayant un rôle d'INVESTISSEUR-->
                                 <div class="card calltoaction">
-                                        <h2 class="subtitle">Bonjour, <span class="colorThis">Test</span></h2>
+                                        <h2 class="subtitle">Bonjour, <span class="colorThis">{{ auth()->user()->pseudo }}</span></h2>
                                         <!-- Si profil utilisateur est rempli afficher ce qui suit -->
                                         <p class="content">Alors, on investi dans quoi aujourd'hui ?</p>
                                         <!-- Sinon Demander le remplissage de celui-ci -->
@@ -37,7 +37,7 @@
                             @elseif (auth()->check() && auth()->user()->role == "Entreprise")
                                 <!-- Visible pour les utilisateurs connecté et ayant un rôle d'INVESTISSEUR-->
                                 <div class="card calltoaction">
-                                        <h2 class="subtitle">Bonjour, <span class="colorThis">Test</span></h2>
+                                        <h2 class="subtitle">Bonjour, <span class="colorThis">{{ auth()->user()->pseudo }}</span></h2>
                                         <!-- Si profil utilisateur est rempli afficher ce qui suit -->
                                         <p class="content">Alors, quel projet souhaitez-vous réaliser aujourd'hui ?</p>
                                         <!-- Sinon Demander le remplissage de celui-ci -->
@@ -47,7 +47,7 @@
                                                 <a class="btn" href="/post-project.php">Commencer</a>
                                                 <!-- SInon -->
                                                 <!-- <a class="btn" href="#">Remplir le profil</a> -->
-                                                <a class="noBtn" href="/logout.php" onclick="destroySession()">Déconnexion</a>
+                                                <a class="noBtn" href="{{ route('auth.logout') }}" onclick="destroySession()">Déconnexion</a>
                                         </div>
                                 </div>
                             @endif
@@ -133,8 +133,13 @@
                                                 <li><a><i class="fa fa-bolt"></i><h5>Abonnement</h5></a></li>
                                                 <li><a><i class="fa fa-info"></i><h5>Centre d'aide</h5></a></li>
                                         </ul>
-                                        <a class="logoutBtn" href="logout.php" onclick="destroySession()">Déconnexion</a> 
-                                </div>              
+                                        <a class="logoutBtn" href="{{ route('auth.logout') }}" onclick="destroySession()">Déconnexion</a> 
+                                </div> 
+                                @if(!is_null(auth()->user()->logo))
+                                        <a hred="javascript:void(0)" class="userLink"><img src="{{ asset('assets/client/logos/' . auth()->user()->logo) }}"  alt="photo de profil" width="30px" height="30px" class="userLogo"><h4 class="userName">{{ auth()->user()->pseudo }}</h4></a>
+                                @else
+                                        <a hred="javascript:void(0)" class="userLink"><img src="{{ asset('assets/client/logos/default.png') }}"  alt="photo de profil" width="30px" height="30px" class="userLogo"><h4 class="userName">{{ auth()->user()->pseudo }}</h4></a>      
+                                @endif                     
                         </div>
                     @endauth
             </div>

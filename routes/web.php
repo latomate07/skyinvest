@@ -18,7 +18,18 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::group(['middleware' => 'guest'], function(){
-    Route::get('/connexion', [AuthController::class, 'login'])->name('login');
-    Route::get('/inscription', [AuthController::class, 'signin'])->name('signin');
+Route::group(['middleware' => 'guest'], function() {
+    Route::get('/connexion', [AuthController::class, 'showLoginPage'])->name('login');
+    // Login user
+    Route::post('/connexion', [AuthController::class, 'login'])->name('auth.login');
+
+    Route::get('/inscription', [AuthController::class, 'showSigninPage'])->name('signin');
+    // Store user
+    Route::post('/inscription', [AuthController::class, 'register'])->name('auth.signin');
 });
+
+Route::group(['middleware' => 'auth'], function() {
+    // Logout user
+    Route::get('/userWish/logout', [AuthController::class, 'logout'])->name('auth.logout');
+});
+
