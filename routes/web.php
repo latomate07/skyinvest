@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Client\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,5 +32,8 @@ Route::group(['middleware' => 'guest'], function() {
 Route::group(['middleware' => 'auth'], function() {
     // Logout user
     Route::get('/userWish/logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+    // Access Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'showDashboardPage'])->name('client.dashboard');
 });
 
