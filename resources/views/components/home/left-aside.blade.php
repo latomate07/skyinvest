@@ -5,8 +5,8 @@
                     <h2 class="subtitle"><span class="colorThis">TahirouTest</span> est une communauté qui ne vise que la réussite ! </h2>
                     <p class="content">Nous sommes le premier réseau social dédié à l'investissement.</p>
                     <div class="calltoaction">
-                        <a class="btn" href="http://localhost:8888/inscription.php">S'inscrire</a>
-                        <a class="noBtn" href="http://localhost:8888/connexion.php">Se connecter</a>
+                        <a class="btn" href="{{ route('signin') }}">S'inscrire</a>
+                        <a class="noBtn" href="{{ route('login') }}">Se connecter</a>
                     </div>
                 </div> 
                 @endguest

@@ -13,8 +13,8 @@
                                         <h2 class="subtitle"><span class="colorThis">TahirouTest</span> est une communauté qui ne vise que la réussite ! </h2>
                                         <p class="content">Nous sommes le premier réseau social dédié à l'investissement.</p>
                                         <div class="calltoaction">
-                                                <a class="btn" href="/inscription.php">S'inscrire</a>
-                                                <a class="noBtn" href="/connexion.php">Se connecter</a>
+                                                <a class="btn" href="{{ route('signin') }}">S'inscrire</a>
+                                                <a class="noBtn" href="{{ route('login') }}">Se connecter</a>
                                         </div>
                                 </div>  
                             @endguest
@@ -96,8 +96,8 @@
                     @guest
                         <!-- Show this when user is not connected -->
                         <div class="auth">
-                                <a class="noBtn" href="/connexion.php">Connexion</a>
-                                <a class="btn" href="/inscription.php">Inscription</a>
+                                <a class="noBtn" href="{{ route('login') }}">Connexion</a>
+                                <a class="btn" href="{{ route('signin') }}">Inscription</a>
                         </div>  
                     @endguest
                     @auth
