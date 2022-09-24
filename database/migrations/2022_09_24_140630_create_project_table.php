@@ -23,6 +23,7 @@ return new class extends Migration
                 $table->string('images')->nullable();
                 $table->string('campaignTime'); 
                 $table->decimal('minInvest', 4, 2); // Minimum invest price
+                $table->decimal('profits_percentage');
                 $table->string('ytbVideo')->nullable();
                 $table->string('docs')->nullable();
                 $table->bigInteger('totalViews')->nullable();
