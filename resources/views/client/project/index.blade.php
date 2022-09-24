@@ -22,10 +22,9 @@
     </div>
 
     <div class="forms">
-        <form id="postProject" enctype="multipart/form-data">
-
+        <form id="postProject" enctype="multipart/form-data" method="POST">
             <!-- Étape 1 -->
-
+            @csrf
             <div id="stepOne">
                 <div class="topContent">
                     <h2 class="title">Rédigez l'introduction de votre projet</h2>
@@ -39,7 +38,7 @@
                 <div class="inputArea">
                     <label for="postName" class="bold">Titre</label>
                     <input type="text" placeholder="Ex: Financement du stock de l'entreprise" class="inputs"
-                        name="postName" id="postName" required>
+                        name="name" id="postName" required>
                     <!-- Conteneur de statuts -->
                     <span id="titleMinLength" style="display:none; color:red; margin-bottom:10px;">Votre titre doit
                         contenir plus de 20 caractères !</span>
@@ -57,12 +56,12 @@
                     </select>
 
                     <label for="postPlace" class="bold">Lieu du projet</label>
-                    <input type="text" placeholder="Ajouter une ville ou un pays" class="inputs" name="postPlace"
+                    <input type="text" placeholder="Ajouter une ville ou un pays" class="inputs" name="location"
                         id="postPlace" required>
 
                     <label for="postAmount" class="bold">Objectif Financier (€)</label>
                     <input type="number" step="any" placeholder="Montant de l'objectif fixé" class="inputs"
-                        name="postAmount" id="postAmount" required>
+                        name="amount" id="postAmount" required>
                 </div>
 
                 <div class="actions">
@@ -87,10 +86,10 @@
 
                     <label for="tauxdeprofit" class="bold">Intérêts que bénéficiera l'investisseur (en %)</label>
                     <input type="number" step="any" placeholder="Pourcentage de l'intérêt" class="inputs"
-                        name="tauxdeprofit" id="tauxdeprofit" required>
+                        name="profits_percentage" id="tauxdeprofit" required>
 
                     <label for="vduRoi" class="bold">Délai du retour de l'investissement</label>
-                    <select name="vduRoi" id="vduRoi" required>
+                    <select name="type_return_on_investissment" id="vduRoi" required>
                         <option value="Trimestre">Chaque Trimestre</option>
                         <option value="Semestre">Chaque Semestre</option>
                         <option value="Année">Chaque Année</option>
@@ -130,7 +129,7 @@
 
                 <div class="inputArea" id="description">
                     <label for="projectDescription" class="bold">Décrivez votre projet (3000 mots max)</label>
-                    <textarea name="projectDescription" cols="30" rows="10" class="inputs" id="projectDescription"
+                    <textarea name="description" cols="30" rows="10" class="inputs" id="projectDescription"
                         required></textarea>
                 </div>
 
@@ -162,7 +161,7 @@
                     <div class="topContent">
                         <img src="https://campoal.com/peace/wp-content/themes/campoal/images/image-placeholder-drop.svg"
                             width="128" class="illustation-svg">
-                        <input type="file" class="fileInput inputs" name="image" id="image" accept="image/*" multiple
+                        <input type="file" class="fileInput inputs" name="images" id="image" accept="image/*" multiple
                             required>
 
                         <!-- Conteneur de statuts -->
@@ -171,7 +170,7 @@
 
                     </div>
 
-                    <input type="text" placeholder="https://liendemavideoyoutube.com" class="inputs" name="youtubeVideo"
+                    <input type="text" placeholder="https://liendemavideoyoutube.com" class="inputs" name="ytbVideo"
                         id="video">
                 </div>
 
@@ -189,25 +188,10 @@
                     autoplay></lottie-player>
                 <h4 style="text-align:center">Votre projet a été soumis avec succès.</h4>
 
-                <?php if(isset($project_id)) : // Si le projet existe?>
-                <a href="single-project.php?id=<?= $project_id ?>" class="btn viewProject">Voir le projet</a>
-                <?php endif ?>
+                <?php // if(isset($project_id)) : // Si le projet existe?>
+                <a href="#" class="btn viewProject">Voir le projet</a>
+                <?php // endif ?>
             </div>
-
-            <?php if(isset($pdoErreur) && !empty($pdoErreur)) : // Si une erreur s'est produite, afficher le contenu suivant?>
-            <!-- Erreur -->
-            <div id="errorForm" class="stepInactive">
-                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_0pgmwzt3.json"
-                    background="transparent" speed="1" style="width: 300px; height: 300px; margin:0 auto;" loop
-                    autoplay></lottie-player>
-                <h4 style="text-align:center">
-                    <?= $pdoErreur; ?>
-                </h4>
-                <button href="javascrip:void(0)" class="btn" onclick="returnToHome()">Retourner à la page
-                    d'accueil</button>
-            </div>
-            <?php endif ?>
-
         </form> <!-- Fin du formulaire -->
     </div>
 </div>
