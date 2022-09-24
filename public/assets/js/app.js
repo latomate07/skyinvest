@@ -55,10 +55,13 @@ const viewMore = document.querySelector('.viewMore'),
       blockContent = document.querySelector('.block-content'),
       notifIcon = document.querySelector('.notifications'),
       notifBlock = document.querySelector('.notif-block'),
-      closeBtn = document.getElementById('notifClose-btn');
-    show(viewMore, blockContent);
-    showFromRight(notifIcon, notifBlock);
-    showFromRight(closeBtn, notifBlock);
+      closeBtn = document.getElementById('notifClose-btn')
+      
+    if (sessionStorage.getItem('user_id') !== null) { // Si utilisateur connecté
+        show(viewMore, blockContent);
+        showFromRight(notifIcon, notifBlock);
+        showFromRight(closeBtn, notifBlock);
+    }
 /*** End */
 
 /**** Show notifications */
