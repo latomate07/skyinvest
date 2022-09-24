@@ -24,7 +24,16 @@ class StoreProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'description' => 'required',
+            'amount' => 'required',
+            'categorie' => 'required',
+            'location' => 'required',
+            'type_return_on_investissment' => 'required',
+            'minInvest' => 'required',
+            'profits_percentage' => 'required',
+            'campaignTime' => 'required',
+            'images' => 'required'
         ];
     }
 }
