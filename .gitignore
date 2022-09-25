@@ -2,6 +2,9 @@
 /public/build
 /public/hot
 /public/storage
+/public/assets/client/images
+/public/assets/client/images/thumbnails
+/public/assets/client/logos
 /storage/*.key
 /vendor
 .env
