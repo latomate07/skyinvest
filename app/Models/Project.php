@@ -25,16 +25,16 @@ class Project extends Model
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function thumbnails()
     {
-        $this->hasMany(Thumbnail::class);
+        return $this->hasMany(Thumbnail::class);
     }
     public function categories()
     {
-        $this->belongsTo(Categories::class);
+        return $this->belongsTo(Categories::class);
     }
     public static function boot()
     {

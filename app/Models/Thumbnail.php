@@ -14,8 +14,8 @@ class Thumbnail extends Model
         'project_id'
     ];
 
-    public function project()
+    public function projects()
     {
-        $this->belongsTo(Project::class);
+        return $this->belongsTo(Project::class);
     }
 }
