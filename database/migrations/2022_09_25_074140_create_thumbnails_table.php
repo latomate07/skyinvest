@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('thumbnails', function (Blueprint $table) {
             $table->id();
             $table->string('url');
-            $table->foreignId('project_id')->constrained();
+            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
