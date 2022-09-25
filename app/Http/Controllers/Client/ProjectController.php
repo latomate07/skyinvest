@@ -35,7 +35,7 @@ class ProjectController extends Controller
         $project = Project::create($request->except(['images', 'categorie']));
         foreach($request->images as $image)
         {
-            $path = $image->store('thumbnail');
+            $path = $image->store('thumbnails', ['disk' => 'project_thumbnails']);
             $this->thumbnail->url = $path;
             $this->thumbnail->project_id = $project->id;
             $this->thumbnail->save();
