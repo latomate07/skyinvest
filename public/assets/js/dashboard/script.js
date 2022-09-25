@@ -208,9 +208,18 @@ document.getElementById('changeImg').addEventListener('submit', function(e) {
 
         if(inArray(extension, allowedExtension)) {
             console.log("Parfait mon gâté !")
-            xhr.open("POST", "/dashboard/ajax.php", true) // Envoyer le fichier pour le traiter
+            xhr.open("POST", "/ajax/dashboard", true) // Envoyer le fichier pour le traiter
             xhr.responseType = "json"
             xhr.send(data)   
+
+            // Changer automatiquement src user logo
+            xhr.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200) {
+                    $('.userLogo').attr('src', 'assets/client/logos/' + this.response.path_logo)
+                }
+            }
+
+            console.log(xhr);
 
             // Fermer le modal 
             addImgContainer.style.top = "800px"
