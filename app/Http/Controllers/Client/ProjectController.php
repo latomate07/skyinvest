@@ -43,6 +43,8 @@ class ProjectController extends Controller
         // Store categorie
         $this->categorie->name = $request->categorie;
         $this->categorie->project_id = $project->id;
+        $this->categorie->save();
+        
         if(!$project)
         {
             return redirect()->back()->withErrors('Veuillez remplir tout les champs !');
