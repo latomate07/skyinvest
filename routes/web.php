@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\Client\ProjectController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +16,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('home');
-});
+//Home
+Route::get('/', [HomeController::class, 'showHomePage'])->name('home');
 
 Route::group(['middleware' => 'guest'], function() {
     Route::get('/connexion', [AuthController::class, 'showLoginPage'])->name('login');
