@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('role');
             $table->string('country');
-            $table->string('logo')->nullable();
+            // $table->string('logo')->nullable();
             $table->enum('isAgreedWithTerms', ['on', 'off']);
             $table->enum('wishNewsletter', ['on', 'off']);
             $table->rememberToken();
