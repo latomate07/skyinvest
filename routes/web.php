@@ -34,10 +34,24 @@ Route::group(['middleware' => 'auth'], function() {
     // Logout user
     Route::get('/userwish/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
+    /**************** DASHBOARD ROUTE *****************/
     // Access Dashboard
     Route::get('/dashboard', [DashboardController::class, 'showDashboardPage'])->name('client.dashboard');
+    /**************** END DASHBOARD ROUTE *****************/
 
-    // Access Project Publish Page
+    /**************** PROJECT ROUTE *****************/
+    //-- Access Project Publish Page
     Route::get('/projet/publication', [ProjectController::class, 'showProjectPage'])->name('client.project.publish');
+    //-- Show project
+    Route::get('/projet/{id}', [ProjectController::class, 'show'])->name('client.project.show');
+    //-- Store project
+    Route::post('/projet/publication', [ProjectController::class, 'store'])->name('client.project.create');
+    //-- Edit project
+    Route::put('/projet/publication/edit/{id}', [ProjectController::class, 'update'])->name('client.project.edit');
+    //-- Delete project
+    Route::delete('/project/publication/delete/{id}', [ProjectController::class, 'delete'])->name('client.project.delete');
+    /**************** END PROJECT ROUTE *****************/
+
+
 });
 
