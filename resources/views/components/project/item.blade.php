@@ -80,7 +80,7 @@
             <p><a class="reactionBtn" href="#"><i class="fa fa-thumbs-up" style="margin-right:5px"></i>J'aime</a></p>
         </div>
         <div class="investir">
-            <p><a class="reactionBtn" href="#"><i class="fa fa-chart-pie"
+            <p><a class="reactionBtn" href="{{ route('client.project.show', $project->id) }}"><i class="fa fa-chart-pie"
                         style="margin-right:5px"></i>Voir plus</a></p>
         </div>
         <div class="discuss">
