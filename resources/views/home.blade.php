@@ -7,7 +7,11 @@
     </div>
     <div class="middle-block">
         @include('components.home.navTab')
-        <?php // include_once('template/project-item.php'); ?>
+        @forelse ($projects as $project)
+            @include('components.project.item')
+        @empty
+            <p>Oups ! Aucun projet n'a été trouvé.</p>
+        @endforelse
     </div>
     <div class="right">
         @include('components.home.right-aside')
