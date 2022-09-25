@@ -213,6 +213,7 @@ form.addEventListener("submit", (e) => {
         if (xhr.status === 200) {
             console.log("Le statut est égale à 200")
             blockSuccess.classList.remove("stepInactive"); // Afficher le block SUCCÈS
+            
         } else {
             if (document.getElementById("errorForm")) {
                  const  blockError = document.getElementById("errorForm");
@@ -221,7 +222,7 @@ form.addEventListener("submit", (e) => {
         }
     }
 
-    xhr.open("POST", "/project/actions.php", true);
+    xhr.open("POST", "/projet/publication", true);
     xhr.responseType = "json";
     xhr.send(data);
 
