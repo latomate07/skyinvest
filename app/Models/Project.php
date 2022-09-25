@@ -19,11 +19,29 @@ class Project extends Model
         'profits_percentage',
         'ytbVideo',
         'docs',
-        'type_return_on_investissment'
+        'type_return_on_investissment',
+        'user_id'
     ];
 
     public function user()
     {
         $this->belongsTo(User::class);
+    }
+
+    public function thumbnails()
+    {
+        $this->hasMany(Thumbnail::class);
+    }
+    public function categories()
+    {
+        $this->belongsTo(Categories::class);
+    }
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($post) {
+            $post->user_id = auth()->user()->id;
+        });
     }
 }
