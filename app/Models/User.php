@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Project::class);
     }
+
+    public function medias()
+    {
+        return $this->hasOne(Medias::class);
+    }
 }
