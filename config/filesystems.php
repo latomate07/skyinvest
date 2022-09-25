@@ -55,7 +55,12 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
-
+        
+        'project_thumbnails' => [
+            'driver' => 'local',
+            'root' => public_path() . '/assets/client/images/',
+            'visibility' => 'public'
+        ]
     ],
 
     /*
