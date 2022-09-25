@@ -60,6 +60,12 @@ return [
             'driver' => 'local',
             'root' => public_path() . '/assets/client/images/',
             'visibility' => 'public'
+        ],
+
+        'user_logo_path' => [
+            'driver' => 'local',
+            'root' => public_path() . '/assets/client/logos/',
+            'visibility' => 'public'
         ]
     ],
 
