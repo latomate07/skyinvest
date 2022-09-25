@@ -113,15 +113,7 @@
                                                 <div class="message-bar">
                                                         <h4 class="title"><a href="">Messages</a></h4>
                                                 </div>
-                                        </div>  
-                                        {{-- <div class="mainContent">
-                                                <?php // foreach($userNotification as $notification) : ?>
-                                                <div class="notif-content" id="notif-content">
-                                                <h5 class="notif-title" id="notif-title"><?= // $notification->subject ?></h5>
-                                                <p class="notif-message" id="notif-alert"><?= // $notification->message ?></p>
-                                                </div>
-                                                <?php // endforeach ?>
-                                        </div> --}}
+                                        </div> 
                                 </div>                       
                                 <a hred="javascript:void(0)" class="viewMore"><i class="fa fa-compass"></i></a>
                                 <div class="block-content">
