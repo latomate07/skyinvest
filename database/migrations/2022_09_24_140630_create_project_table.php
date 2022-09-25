@@ -20,7 +20,7 @@ return new class extends Migration
                 $table->text('description');
                 $table->decimal('amount');
                 $table->string('location');
-                $table->string('images')->nullable();
+                // $table->string('images')->nullable();
                 $table->string('campaignTime'); 
                 $table->decimal('minInvest', 4, 2); // Minimum invest price
                 $table->decimal('profits_percentage');
