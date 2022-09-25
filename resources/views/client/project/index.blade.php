@@ -161,7 +161,7 @@
                     <div class="topContent">
                         <img src="https://campoal.com/peace/wp-content/themes/campoal/images/image-placeholder-drop.svg"
                             width="128" class="illustation-svg">
-                        <input type="file" class="fileInput inputs" name="images" id="image" accept="image/*" multiple
+                        <input type="file" class="fileInput inputs" name="images[]" id="image" accept="image/*" multiple
                             required>
 
                         <!-- Conteneur de statuts -->
@@ -188,9 +188,7 @@
                     autoplay></lottie-player>
                 <h4 style="text-align:center">Votre projet a été soumis avec succès.</h4>
 
-                <?php // if(isset($project_id)) : // Si le projet existe?>
-                <a href="#" class="btn viewProject">Voir le projet</a>
-                <?php // endif ?>
+                <a href="{{ route('client.dashboard') }}" class="btn viewProject">Voir le projet</a>
             </div>
         </form> <!-- Fin du formulaire -->
     </div>
