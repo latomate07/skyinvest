@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function() {
     /**************** DASHBOARD ROUTE *****************/
     // Access Dashboard
     Route::get('/dashboard', [DashboardController::class, 'showDashboardPage'])->name('client.dashboard');
+    Route::post('/ajax/dashboard', [DashboardController::class, 'liveChange'])->name('client.dashboard.ajax');
     /**************** END DASHBOARD ROUTE *****************/
 
     /**************** PROJECT ROUTE *****************/
