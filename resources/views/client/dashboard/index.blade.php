@@ -18,14 +18,14 @@
                 <div class="synth-infos">
                     <div class="left-content">
                         <div class="left-side">
-                                @if(!is_null(auth()->user()->logo))
-                                    <img src="{{ asset('assets/client/logos/' . auth()->user()->logo) }}"  alt="photo de profil" width="90px" height="90px" class="userLogo">
+                                @if($medias !== null)
+                                    <img src="{{ asset('assets/client/logos/' . $medias->url) }}"  alt="photo de profil" width="90px" height="90px" class="userLogo">
                                 @else
                                     <img src="{{ asset('assets/client/logos/default.png') }}"  alt="photo de profil" width="90px" height="90px" class="userLogo">    
                                 @endif
                             <i class="fa fa-camera" id="addImg"></i>
                             <div class="addImgContainer">
-                                <div class="userLogo preview"><img id="preview"></div>
+                                <div class="userLogo preview"><img id="preview" src="{{ $medias !== null ? asset('assets/client/logos/' . $medias->url) : asset('assets/client/logos/default.png') }}"></div>
                                 <form id="changeImg" enctype="multipart/form-data" method="POST">
                                     @csrf
                                     <input type="file" id="file" accept='image/*' name="user_logo" onchange="previewFile()"> 
