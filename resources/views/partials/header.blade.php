@@ -2,7 +2,7 @@
         <div class="headerContainer">
                     <!-- Visible uniquement sur mobile -->
                     <div class="burgerMenu authAction">       
-                            <a hred="javascript:void(0)" id="menuIcon"><i class="fa fa-bars"></i></a>
+                            <a href="javascript:void(0)" id="menuIcon"><i class="fa fa-bars"></i></a>
                     </div>
     
                     <div class="menuPrincipal aside-block" id="menuPrincipal">
@@ -103,7 +103,7 @@
                     @auth
                         <!-- Show this when user is connected -->
                         <div class="auth authAction">
-                                <a hred="javascript:void(0)" class="notifications"><i class="fa fa-bell"></i></a>
+                                <a href="javascript:void(0)" class="notifications"><i class="fa fa-bell"></i></a>
                                 <div class="notif-block">
                                         <div class="topContent">
                                                 <i class="fa fa-arrow-left close-btn" id="notifClose-btn"></i> <!-- Button pour fermer fenetre -->
@@ -115,7 +115,7 @@
                                                 </div>
                                         </div> 
                                 </div>                       
-                                <a hred="javascript:void(0)" class="viewMore"><i class="fa fa-compass"></i></a>
+                                <a href="javascript:void(0)" class="viewMore"><i class="fa fa-compass"></i></a>
                                 <div class="block-content">
                                         <ul class="tools-list">
                                                 <li><a href="{{ route('client.dashboard') }}"><i class="fa fa-user"></i><h5>Tableau de bord</h5></a></li>
@@ -127,10 +127,10 @@
                                         </ul>
                                         <a class="logoutBtn" href="{{ route('auth.logout') }}" onclick="destroySession()">Déconnexion</a> 
                                 </div> 
-                                @if(!is_null(auth()->user()->logo))
-                                        <a hred="javascript:void(0)" class="userLink"><img src="{{ asset('assets/client/logos/' . auth()->user()->logo) }}"  alt="photo de profil" width="30px" height="30px" class="userLogo"><h4 class="userName">{{ auth()->user()->pseudo }}</h4></a>
+                                @if($medias !== null)
+                                        <a href="javascript:void(0)" class="userLink"><img src="{{ asset('assets/client/logos/' . $medias->url) }}"  alt="photo de profil" width="30px" height="30px" class="userLogo"><h4 class="userName">{{ auth()->user()->pseudo }}</h4></a>
                                 @else
-                                        <a hred="javascript:void(0)" class="userLink"><img src="{{ asset('assets/client/logos/default.png') }}"  alt="photo de profil" width="30px" height="30px" class="userLogo"><h4 class="userName">{{ auth()->user()->pseudo }}</h4></a>      
+                                        <a href="javascript:void(0)" class="userLink"><img src="{{ asset('assets/client/logos/default.png') }}"  alt="photo de profil" width="30px" height="30px" class="userLogo"><h4 class="userName">{{ auth()->user()->pseudo }}</h4></a>      
                                 @endif                     
                         </div>
                     @endauth
