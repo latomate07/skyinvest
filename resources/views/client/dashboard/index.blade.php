@@ -16,7 +16,6 @@
             </div>
             <div class="top-content">
                 <div class="synth-infos">
-                
                     <div class="left-content">
                         <div class="left-side">
                                 @if(!is_null(auth()->user()->logo))
@@ -27,8 +26,9 @@
                             <i class="fa fa-camera" id="addImg"></i>
                             <div class="addImgContainer">
                                 <div class="userLogo preview"><img id="preview"></div>
-                                <form id="changeImg" enctype="multipart/form-data">
-                                    <input type="file" id="file" accept='image/*' name="file" onchange="previewFile()"> 
+                                <form id="changeImg" enctype="multipart/form-data" method="POST">
+                                    @csrf
+                                    <input type="file" id="file" accept='image/*' name="user_logo" onchange="previewFile()"> 
                                     <input type="submit" value="Modifier" id="submitBtn">
                                 </form>
                             </div>
@@ -38,7 +38,6 @@
                             <a class="userMail" href="javascript:void(0)">{{ auth()->user()->email }}</a>
                         </div>
                     </div>
-
                     <div class="middle-content">
                         <div class="top-elements">
                             <i class="fa fa-x"></i>
