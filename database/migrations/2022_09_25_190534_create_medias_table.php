@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('url');
             $table->foreignId('user_id')->constrained();
+            $table->morphs('mediable');
             $table->timestamps();
         });
     }
