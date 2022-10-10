@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Traits\DashboardTrait;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
     use DashboardTrait;
-    public function showDashboardPage()
+    public function showDashboardPage(Request $request)
     {
-        return view('client.dashboard.index');
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+
+        return view('client.dashboard.index', [
+            'user' => $user
+        ]);
     }
 }
