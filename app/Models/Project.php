@@ -41,7 +41,10 @@ class Project extends Model
         parent::boot();
 
         static::creating(function ($project) {
-            $project->user_id = auth()->user()->id;
+            if(is_null($project->user_id)) // To make ProjectSeeder works
+            {
+                $project->user_id = auth()->user()->id;
+            }
         });
     }
 }
