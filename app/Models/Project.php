@@ -28,9 +28,9 @@ class Project extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function thumbnails()
+    public function medias()
     {
-        return $this->hasMany(Thumbnail::class);
+        return $this->morphMany(Medias::class, 'mediable');
     }
     public function categories()
     {
@@ -40,8 +40,8 @@ class Project extends Model
     {
         parent::boot();
 
-        static::creating(function ($post) {
-            $post->user_id = auth()->user()->id;
+        static::creating(function ($project) {
+            $project->user_id = auth()->user()->id;
         });
     }
 }
