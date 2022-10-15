@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\Project;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Project;
-use App\Models\Thumbnail;
-use App\Models\Categories;
 
 class ProjectController extends Controller
 {
     use SoftDeletes;
-    protected $thumbnail;
     protected $categorie;
 
-    public function __construct(Thumbnail $thumbnail, Categories $categorie)
+    public function __construct(Categories $categorie)
     {
-        $this->thumbnail = $thumbnail;
         $this->categorie = $categorie;
     }
     public function showProjectPage()
@@ -36,9 +33,9 @@ class ProjectController extends Controller
         foreach($request->images as $image)
         {
             $path = $image->store('thumbnails', ['disk' => 'project_thumbnails']);
-            $this->thumbnail->url = $path;
-            $this->thumbnail->project_id = $project->id;
-            $this->thumbnail->save();
+            // Save Image(s)
+            $project->medias->url = $path;
+            $project->save();
         }
         // Store categorie
         $this->categorie->name = $request->categorie;
