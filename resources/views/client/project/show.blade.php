@@ -5,7 +5,7 @@
             <!-- Introduction du projet -->
             <div class="left">
                 <!-- Illustration du projet -->
-                @foreach ($project->thumbnails as $image)
+                @foreach ($project->medias as $image)
                     <img class="illustration" src="{{ asset('assets/client/images') . "/" . $image->url }}">
                 @endforeach
             </div>
