@@ -37,7 +37,6 @@ Route::group(['middleware' => 'auth'], function() {
     // Access Dashboard
     Route::get('/dashboard', [DashboardController::class, 'showDashboardPage'])->name('client.dashboard');
     Route::post('/ajax/dashboard', [DashboardController::class, 'liveChange'])->name('client.dashboard.ajax');
-    /**************** END DASHBOARD ROUTE *****************/
 
     /**************** PROJECT ROUTE *****************/
     //-- Access Project Publish Page
@@ -50,8 +49,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('/projet/publication/edit/{id}', [ProjectController::class, 'update'])->name('client.project.edit');
     //-- Delete project
     Route::delete('/project/publication/delete/{id}', [ProjectController::class, 'delete'])->name('client.project.delete');
-    /**************** END PROJECT ROUTE *****************/
-
-
 });
+
+/**************** COMMON FUNCTIONNALITIES ROUTES **********/
+Route::post('/ajax/livesearch', [ProjectController::class, 'liveSearch'])->name('ajax.search');
 
