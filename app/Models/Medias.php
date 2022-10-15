@@ -9,11 +9,16 @@ class Medias extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['url', 'user_id'];
+    protected $fillable = ['url', 'user_id', 'mediable_id', 'mediable_type'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function mediable()
+    {
+        return $this->morphTo();
     }
 
     public static function boot()
