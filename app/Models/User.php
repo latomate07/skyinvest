@@ -56,6 +56,6 @@ class User extends Authenticatable
 
     public function medias()
     {
-        return $this->hasOne(Medias::class);
+        return $this->morphOne(Medias::class, 'mediable');
     }
 }
