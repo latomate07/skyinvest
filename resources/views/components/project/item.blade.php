@@ -1,7 +1,7 @@
 <div class="project">
     <div class="topContent">
         <div class="left">
-            @if(!is_null(auth()->user()->logo))
+            @if($medias !== null)
             <a href="#" class="userLink"><img src="{{ asset('assets/client/logos/' . auth()->user()->logo) }}" alt="photo de profil"
                     width="50px" height="50px" class="userLogo"></a>
             @else
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="right">
-            @foreach ($project->thumbnails as $image)
+            @foreach ($project->medias as $image)
                 <img class="projectImage" src="{{ asset('assets/client/images') . "/" . $image->url }}">
             @endforeach
         </div>
