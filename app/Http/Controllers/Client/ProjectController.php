@@ -85,4 +85,14 @@ class ProjectController extends Controller
     public function delete(Request $request)
     {
     }
+
+    /**
+     * Ajax Live Search Function
+     */
+    public function liveSearch(Request $request)
+    {
+        $project = Project::where('name', 'LIKE', '%'.$request->wishResultTerm.'%')->get();
+
+        return response()->json($project, 200);
+    }
 }
