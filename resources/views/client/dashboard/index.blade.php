@@ -126,18 +126,18 @@
                             <div class="right-content">
                                 <label for="userBirdResidence">Pays de résidence</label>
                                 <select name="userBirdResidence">
-                                <option value="France">France</option>
-                                <option value="Belgique">Belgique</option>
-                                <option value="Suisse">Suisse</option>
-                                <option value="Maroc">Maroc</option>
-                                <option value="Niger">Niger</option>
+                                    <option value="France">France</option>
+                                    <option value="Belgique">Belgique</option>
+                                    <option value="Suisse">Suisse</option>
+                                    <option value="Maroc">Maroc</option>
+                                    <option value="Niger">Niger</option>
                                 </select>
                                 <label for="userBirthday">Date de naissance</label>
                                 <input type="date" name="userBirthday">
                                 <label for="userGenre">Genre</label>
                                 <select name="userGenre">
-                                <option value="Homme">Homme</option>
-                                <option value="Femme">Femme</option>
+                                    <option value="Homme">Homme</option>
+                                    <option value="Femme">Femme</option>
                                 </select>
                             </div>
                         </div>
