@@ -160,13 +160,29 @@
                         success: function(data){
                                 $.each(data, function(index, value){
                                         if($('#element-'+index).length !== 1){
-                                                $('.resultOfLiveSearch').append('<li class="resultOfLiveSearchItem" id="'+'element-'+index+'">'+ value.name +'</li>')
+                                                let project_url = "{{ route('client.project.show', ':id') }}";
+                                                project_url = project_url.replace(':id', value.id)
+                                                $('.resultOfLiveSearch').append('<li class="resultList" id="'+'element-'+index+'"><a class="resultOfLiveSearchItem" href='+project_url+'>'+ value.name +'</a></li>')
                                         } 
                                         if($('#element-'+index).length == 0){
                                                 $('#element-'+index).hide()
                                         }
-                                        console.log(value.name);
+                                        // console.log(value.name);
+                                        $('.resultOfLiveSearch').show()
                                 })
+                                if(data == "")
+                                {
+                                        $('.resultList').hide()
+                                        if($('#resultListNoFound').length > 0)
+                                        {
+                                                $('.resultOfLiveSearch').append('<p id="resultListNoFound" style="text-align:center">Aucun résultat trouvé.</p>')
+                                        }
+                                } 
+                                else
+                                {
+                                        $('.resultList').show()
+                                        $('#resultListNoFound').hide()
+                                }
                         },
                         error: function(error){
                                 console.log(error);
