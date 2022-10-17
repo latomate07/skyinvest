@@ -32,6 +32,13 @@ class Project extends Model
     {
         return $this->morphMany(Medias::class, 'mediable');
     }
+    /**
+     * Relation to ProjectLike
+     */
+    public function likes()
+    {
+        return $this->morphTo(ProjectLikes::class, 'likeable');
+    }
     public function categories()
     {
         return $this->belongsTo(Categories::class);
