@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\ProjectLikes;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProjectController extends Controller
@@ -94,5 +95,23 @@ class ProjectController extends Controller
         $project = Project::where('name', 'LIKE', '%'.$request->wishResultTerm.'%')->get();
 
         return response()->json($project, 200);
+    }
+
+    /**
+     * Project Likes Function
+     */
+    public function projectLiked(Request $request)
+    {
+        $project = Project::find($request->project_id);
+        $favorites = $project->likes()->firstOr(function() use($project) {
+            $likes = ProjectLikes::create(['likeable_id' => $project->id, 'likeable_type' => Project::class, 'is_liked' => 'yes']);
+            return $likes;
+        });
+        if($request->is_active !== "true")
+        {
+            $project->likes()->update(['is_liked' => 'no']);
+        }
+
+        return response()->json($project->likes, 200);
     }
 }
