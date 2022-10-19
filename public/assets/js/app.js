@@ -1,10 +1,10 @@
 /**** FUNCTIONS *******/
 function show(parent, child) { // Show with Toggle visibility
-    if(parent !== "") {
+    if (parent !== "") {
         parent.addEventListener('click', () => {
             child.classList.toggle('visible');
         })
-    } 
+    }
 }
 function destroySession() { // Supprimer une session active
     sessionStorage.clear();
@@ -35,33 +35,33 @@ function close(parent, child) {
     })
 }
 function isEmpty(str) {
-    return (!str || str.length === 0 );
+    return (!str || str.length === 0);
 }
-function addElement (parent, content) { // ElementID => Élément parent, Content => Contenu AJouté
+function addElement(parent, content) { // ElementID => Élément parent, Content => Contenu AJouté
     // crée un nouvel élément div
     var newDiv = document.createElement("p");
     // et lui donne un peu de contenu
     var newContent = document.createTextNode(content);
     // ajoute le nœud texte au nouveau div créé
     newDiv.appendChild(newContent);
-  
+
     // ajoute le nouvel élément créé et son contenu dans le DOM
     var currentDiv = document.getElementById(parent);
     parent.insertBefore(newDiv, currentDiv);
-  }
+}
 
 /**** SHOW/HIDDEN ELEMENTS in Header*/
 const viewMore = document.querySelector('.viewMore'),
-      blockContent = document.querySelector('.block-content'),
-      notifIcon = document.querySelector('.notifications'),
-      notifBlock = document.querySelector('.notif-block'),
-      closeBtn = document.getElementById('notifClose-btn')
-      
-    if (sessionStorage.getItem('user_id') !== null) { // Si utilisateur connecté
-        show(viewMore, blockContent);
-        showFromRight(notifIcon, notifBlock);
-        showFromRight(closeBtn, notifBlock);
-    }
+    blockContent = document.querySelector('.block-content'),
+    notifIcon = document.querySelector('.notifications'),
+    notifBlock = document.querySelector('.notif-block'),
+    closeBtn = document.getElementById('notifClose-btn')
+
+if (sessionStorage.getItem('user_id') !== null) { // Si utilisateur connecté
+    show(viewMore, blockContent);
+    showFromRight(notifIcon, notifBlock);
+    showFromRight(closeBtn, notifBlock);
+}
 /*** End */
 
 /**** Show notifications */
@@ -102,16 +102,16 @@ document.getElementById("overlay").onclick = function () {
 
 /**** Menu Principal */
 const menuIcon = document.getElementById('menuIcon'),
-      menuBlock = document.getElementById('menuPrincipal'),
-      menuCloseBtn = document.getElementById('menuClose-btn');
+    menuBlock = document.getElementById('menuPrincipal'),
+    menuCloseBtn = document.getElementById('menuClose-btn');
 
-menuIcon.onclick = function() {
+menuIcon.onclick = function () {
     menuBlock.style.visibility = "visible"
     menuBlock.style.opacity = "1"
     menuBlock.style.left = "0"
 }
 
-menuCloseBtn.onclick = function() {
+menuCloseBtn.onclick = function () {
     menuBlock.style.visibility = "hidden"
     menuBlock.style.opacity = "0"
     menuBlock.style.left = "-315px"
