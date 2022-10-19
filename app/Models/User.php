@@ -58,4 +58,12 @@ class User extends Authenticatable
     {
         return $this->morphOne(Medias::class, 'mediable');
     }
+    /**
+     * Add user relation to retrieve all user project liked 
+     */
+
+    public function project_liked()
+    {
+        return $this->hasMany(ProjectLikes::class, 'like_by');
+    }
 }
