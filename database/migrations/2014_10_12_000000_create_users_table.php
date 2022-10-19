@@ -22,9 +22,19 @@ return new class extends Migration
             $table->string('password');
             $table->string('role');
             $table->string('country');
-            // $table->string('logo')->nullable();
             $table->enum('isAgreedWithTerms', ['on', 'off']);
             $table->enum('wishNewsletter', ['on', 'off']);
+            // All nullable columns 
+            $table->string('neph_number')->nullable();
+            $table->string('juridique_status')->nullable();
+            $table->string('bilan_enterprise')->nullable();
+            $table->string('adresse')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('iban')->nullable();
+            $table->string('identity_card')->nullable();
+            $table->string('source_of_income')->nullable();
+            $table->string('user_profession')->nullable();
+            // End
             $table->rememberToken();
             $table->timestamps();
         });
