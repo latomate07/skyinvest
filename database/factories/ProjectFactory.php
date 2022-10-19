@@ -18,7 +18,7 @@ class ProjectFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->text(45),
             'description' => fake()->text(400),
             'amount' => fake()->numberBetween(1, 2000),
             'location' => fake()->city(),
