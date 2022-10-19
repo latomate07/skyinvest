@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('project_likes', function (Blueprint $table) {
             $table->id();
             $table->morphs('likeable');
-            $table->bigIncrements('user_id');
+            $table->enum('is_liked', ['yes', 'no'])->nullable();
+            $table->unsignedBigInteger('like_by');
+            $table->foreign('like_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
