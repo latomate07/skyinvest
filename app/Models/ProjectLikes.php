@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class ProjectLikes extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'like_by',
+        'likeable_id', 
+        'likeable_type',
+        'is_liked'
+    ];
     
     /**
      * Create a relation with project
@@ -17,12 +24,17 @@ class ProjectLikes extends Model
         return $this->morphTo();
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public static function boot()
     {
         parent::boot();
 
         static::creating(function ($project_like) {
-            $project_like->user_id = auth()->user()->id;
+            $project_like->like_by = auth()->user()->id;
         });
     }
 }
