@@ -20,6 +20,63 @@
         @yield('content')
         @include('partials.footer')
     </div>
-    @yield('scripts')
 </body>
+@yield('scripts')
+{{-- Live Search  --}}
+<script>
+    // Hide Result List Block
+    $('.resultOfLiveSearch').hide()
+
+    $('#searchBar').on('submit', function(event){
+            event.preventDefault();
+    })
+    $('#searchInput').on('keyup', function(){
+            $('.resultOfLiveSearch').show()
+            $.ajax({
+                    url: "{{ route('ajax.search') }}",
+                    type: "POST",
+                    data: {
+                            '_token': '{{ csrf_token() }}',
+                            'wishResultTerm': $(this).val()
+                    },
+                    success: function(data){
+                            $.each(data, function(index, value){
+                                    if($('#element-'+index).length !== 1){
+                                            let project_url = "{{ route('client.project.show', ':id') }}";
+                                            project_url = project_url.replace(':id', value.id)
+                                            $('.resultOfLiveSearch').append('<li class="resultList" id="'+'element-'+index+'"><a class="resultOfLiveSearchItem" href='+project_url+'>'+ value.name +'</a></li>')
+                                    } 
+                                    if($('#element-'+index).length == 0){
+                                            $('#element-'+index).hide()
+                                    }
+                                    // console.log(value.name);
+                                    $('.resultOfLiveSearch').show()
+                            })
+                            if(data == "")
+                            {
+                                    $('.resultList').hide()
+                                    if($('#resultListNoFound').length > 0)
+                                    {
+                                            $('.resultOfLiveSearch').append('<p id="resultListNoFound" style="text-align:center">Aucun résultat trouvé.</p>')
+                                    }
+                            } 
+                            else
+                            {
+                                    $('.resultList').show()
+                                    $('#resultListNoFound').hide()
+                            }
+                    },
+                    error: function(error){
+                            console.log(error);
+                    }
+            })
+    })
+    $('#searchInput').on('click', function(){
+            $('.resultOfLiveSearch').show()
+    })
+    $('#overlay').on('click', function(){
+            // Hide Result List Block
+            $('.resultOfLiveSearch').hide()
+    })
+</script>
 </html>

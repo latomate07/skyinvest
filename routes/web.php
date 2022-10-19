@@ -49,6 +49,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('/projet/publication/edit/{id}', [ProjectController::class, 'update'])->name('client.project.edit');
     //-- Delete project
     Route::delete('/project/publication/delete/{id}', [ProjectController::class, 'delete'])->name('client.project.delete');
+    //-- Like project
+    Route::post('/project/likethisone', [ProjectController::class, 'projectLiked'])->name('client.project.like');
+    //-- Get Projects User needs
+    Route::get('/project/wished', [HomeController::class, 'switchProjects'])->name('client.project.wished');
 });
 
 /**************** COMMON FUNCTIONNALITIES ROUTES **********/
