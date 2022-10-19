@@ -37,7 +37,7 @@ class Project extends Model
      */
     public function likes()
     {
-        return $this->morphTo(ProjectLikes::class, 'likeable');
+        return $this->morphOne(ProjectLikes::class, 'likeable');
     }
     public function categories()
     {
