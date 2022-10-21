@@ -19,8 +19,8 @@
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
                         <input type="password" name="password" placeholder="Mot de passe" required />
                     </div>
-
                     <input class="button" type="submit" value="Se connecter" name="login"/>
+                    <p>Si vous n'avez pas de compte utilisateur, <a href="{{ route('auth.signin') }}">inscrivez-vous ici</a></p>
                 </form>
             </div>
             </div>
