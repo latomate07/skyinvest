@@ -14,7 +14,7 @@
                 @if (auth()->check() && auth()->user()->role == "Investisseur")
                     <!-- Visible pour les utilisateurs connecté et ayant un rôle d'INVESTISSEUR-->
                     <div class="card calltoaction">
-                        <h2 class="subtitle">Bonjour, <span class="colorThis">{{ auth()->user()->pseudo }}</span></h2>
+                        <h2 class="subtitle">Bonjour, <span class="colorThis">{{ auth()->user()->investor_username }}</span></h2>
                         <!-- Si profil utilisateur est rempli afficher ce qui suit -->
                         <p class="content">Alors, on investi dans quoi aujourd'hui ?</p>
                         <!-- Sinon Demander le remplissage de celui-ci -->
@@ -29,7 +29,7 @@
                 @elseif (auth()->check() && auth()->user()->role == "Entreprise")
                     <!-- Visible pour les utilisateurs connecté et ayant un rôle d'INVESTISSEUR-->
                     <div class="card calltoaction">
-                        <h2 class="subtitle">Bonjour, <span class="colorThis">{{ auth()->user()->pseudo }}</span></h2>
+                        <h2 class="subtitle">Bonjour, <span class="colorThis">{{ auth()->user()->enterprise_name }}</span></h2>
                         <!-- Si profil utilisateur est rempli afficher ce qui suit -->
                         <p class="content">Alors, quel projet souhaitez-vous réaliser aujourd'hui ?</p>
                         <!-- Sinon Demander le remplissage de celui-ci -->
