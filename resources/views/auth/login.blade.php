@@ -14,7 +14,7 @@
                     <p class="error">{{ $error }}</p>
                 @endforeach
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                        <input type="text" name="pseudo" placeholder="Nom d'utilisateur" required />
+                        <input type="text" name="identifiant" placeholder="Nom d'utilisateur ou d'entreprise" required />
                     </div>
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
                         <input type="password" name="password" placeholder="Mot de passe" required />
