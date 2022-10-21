@@ -35,9 +35,17 @@ trait AuthTrait
      */
     function login(LoginUserRequest $request)
     {
-        $credentials = $request->validated();
+        $enterprise_credentials = [
+            'enterprise_name' => $request->identifiant,
+            'password' => $request->password
+        ];
+        $investor_credentials = [
+            'investor_username' => $request->identifiant,
+            'password' => $request->password
+        ];
+
         // Login user
-        if(Auth()->attempt($credentials)) { 
+        if(Auth()->attempt($enterprise_credentials) or Auth()->attempt($investor_credentials)) { 
             return redirect('/')->with('success', 'Bon retour parmi nous !');
         }
 
