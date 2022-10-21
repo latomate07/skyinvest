@@ -21,7 +21,7 @@
                             @if (auth()->check() && auth()->user()->role == "Investisseur")
                                 <!-- Visible pour les utilisateurs connecté et ayant un rôle d'INVESTISSEUR-->
                                 <div class="card calltoaction">
-                                        <h2 class="subtitle">Bonjour, <span class="colorThis">{{ auth()->user()->pseudo }}</span></h2>
+                                        <h2 class="subtitle">Bonjour, <span class="colorThis">{{ auth()->user()->investor_username }}</span></h2>
                                         <!-- Si profil utilisateur est rempli afficher ce qui suit -->
                                         <p class="content">Alors, on investi dans quoi aujourd'hui ?</p>
                                         <!-- Sinon Demander le remplissage de celui-ci -->
@@ -37,7 +37,7 @@
                             @elseif (auth()->check() && auth()->user()->role == "Entreprise")
                                 <!-- Visible pour les utilisateurs connecté et ayant un rôle d'INVESTISSEUR-->
                                 <div class="card calltoaction">
-                                        <h2 class="subtitle">Bonjour, <span class="colorThis">{{ auth()->user()->pseudo }}</span></h2>
+                                        <h2 class="subtitle">Bonjour, <span class="colorThis">{{ auth()->user()->enterprise_name }}</span></h2>
                                         <!-- Si profil utilisateur est rempli afficher ce qui suit -->
                                         <p class="content">Alors, quel projet souhaitez-vous réaliser aujourd'hui ?</p>
                                         <!-- Sinon Demander le remplissage de celui-ci -->
@@ -130,9 +130,9 @@
                                         <a class="logoutBtn" href="{{ route('auth.logout') }}" onclick="destroySession()">Déconnexion</a> 
                                 </div> 
                                 @if($medias !== null)
-                                        <a href="javascript:void(0)" class="userLink"><img src="{{ asset('assets/client/logos/' . $medias->url) }}"  alt="photo de profil" width="30px" height="30px" class="userLogo"><h4 class="userName">{{ auth()->user()->pseudo }}</h4></a>
+                                        <a href="javascript:void(0)" class="userLink"><img src="{{ asset('assets/client/logos/' . $medias->url) }}"  alt="photo de profil" width="30px" height="30px" class="userLogo"><h4 class="userName">{{ auth()->user()->role == "Investisseur" ? auth()->user()->investor_username : auth()->user()->enterprise_name }}</h4></a>
                                 @else
-                                        <a href="javascript:void(0)" class="userLink"><img src="{{ asset('assets/client/logos/default.png') }}"  alt="photo de profil" width="30px" height="30px" class="userLogo"><h4 class="userName">{{ auth()->user()->pseudo }}</h4></a>      
+                                        <a href="javascript:void(0)" class="userLink"><img src="{{ asset('assets/client/logos/default.png') }}"  alt="photo de profil" width="30px" height="30px" class="userLogo"><h4 class="userName">{{ auth()->user()->role == "Investisseur" ? auth()->user()->investor_username : auth()->user()->enterprise_name }}</h4></a>      
                                 @endif                     
                         </div>
                     @endauth
