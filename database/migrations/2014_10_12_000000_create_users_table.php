@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('pseudo')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -25,6 +24,8 @@ return new class extends Migration
             $table->enum('isAgreedWithTerms', ['on', 'off']);
             $table->enum('wishNewsletter', ['on', 'off']);
             // All nullable columns 
+            $table->string('enterprise_name')->nullable();
+            $table->text('enterprise_description')->nullable();
             $table->string('neph_number')->nullable();
             $table->string('juridique_status')->nullable();
             $table->string('bilan_enterprise')->nullable();
@@ -32,6 +33,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->string('iban')->nullable();
             $table->string('identity_card')->nullable();
+            $table->string('investor_username')->nullable();
             $table->string('source_of_income')->nullable();
             $table->string('user_profession')->nullable();
             $table->string('nationality')->nullable();
