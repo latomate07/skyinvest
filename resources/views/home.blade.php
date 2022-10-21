@@ -11,23 +11,29 @@
         @forelse ($projects as $project)
             @include('components.project.item')
         @empty
-            <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_awc77jfz.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: 0 auto;"  loop  autoplay></lottie-player>    
-            <p style="text-align: center; margin-top: 50px">Oups ! Aucun projet n'a été trouvé.</p>
+            <div id="allProjectsNotFound">
+                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_awc77jfz.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: 0 auto;"  loop  autoplay></lottie-player>    
+                <p style="text-align: center; margin-top: 50px">Oups ! Aucun projet n'a été trouvé.</p>    
+            </div>
         @endforelse
 
         {{-- @forelse ($projects_liked as $project_liked)
             @dd($project_liked)
             @include('components.project.likedItem')
         @empty
-            <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_awc77jfz.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: 0 auto;"  loop  autoplay></lottie-player>    
-            <p style="text-align: center; margin-top: 50px">Oups ! Aucun projet n'a été trouvé.</p>
+            <div id="projectsLikedNotFound">
+                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_awc77jfz.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: 0 auto;"  loop  autoplay></lottie-player>    
+                <p style="text-align: center; margin-top: 50px">Oups ! Aucun projet n'a été trouvé.</p>
+            </div>
         @endforelse --}}
 
         @forelse ($latest_projects as $latest_project)
             @include('components.project.latestItem')
         @empty
-            <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_awc77jfz.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: 0 auto;"  loop  autoplay></lottie-player>    
-            <p style="text-align: center; margin-top: 50px">Oups ! Aucun projet n'a été trouvé.</p>
+            <div id="latestProjectsNotFound">
+                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_awc77jfz.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: 0 auto;"  loop  autoplay></lottie-player>    
+                <p style="text-align: center; margin-top: 50px">Oups ! Aucun projet n'a été trouvé.</p>
+            </div>
         @endforelse
     </div>
     <div class="right">
@@ -41,6 +47,10 @@
     // Hide Other projects
     $('#latestProjects').hide()
     $('#projectsLiked').hide()
+
+    // Hide Not found animation
+    $('#projectsLikedNotFound').hide()
+    $('#latestProjectsNotFound').hide()
 
     // Hide other projects section
     $('.likeProject').on('click', function(){
