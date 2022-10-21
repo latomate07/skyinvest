@@ -34,6 +34,19 @@ return new class extends Migration
             $table->string('identity_card')->nullable();
             $table->string('source_of_income')->nullable();
             $table->string('user_profession')->nullable();
+            $table->string('nationality')->nullable();
+            $table->string('genre')->nullable();
+            $table->string('birthday_date')->nullable();
+            $table->string('residence_country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('home_justificatif')->nullable();
+            $table->string('relation_to_call_name')->nullable();
+            $table->string('relation_to_call_adress')->nullable();
+            $table->string('relation_to_call_phoneNumber')->nullable();
+            $table->string('bank_account_owner_name')->nullable();
+            $table->string('bank_account_owner_lastName')->nullable();
+            $table->string('bank_account_name')->nullable();
+            $table->string('source_of_income_justificatif')->nullable();
             // End
             $table->rememberToken();
             $table->timestamps();
