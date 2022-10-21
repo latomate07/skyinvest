@@ -1069,7 +1069,7 @@ top: -220px;
 
 .form_wrapper {
   background: #fff;
-  width: 400px;
+  width: 600px;
   max-width: 100%;
   box-sizing: border-box;
   padding: 25px;
@@ -1141,7 +1141,7 @@ top: -220px;
 .form_wrapper .textarea_field > span > i {
   padding-top: 10px;
 }
-.form_wrapper input[type=text], .form_wrapper input[type=email], .form_wrapper input[type=password] {
+.form_wrapper input[type=text], .form_wrapper input[type=email], .form_wrapper input[type=password], .form_wrapper textarea {
   width: 100%;
   padding: 8px 10px 9px 35px;
   height: 35px;
@@ -1152,6 +1152,9 @@ top: -220px;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+}
+.form_wrapper textarea {
+  min-height: 150px;
 }
 .form_wrapper input[type=text]:hover, .form_wrapper input[type=email]:hover, .form_wrapper input[type=password]:hover {
   background: #fafafa;
@@ -1248,6 +1251,7 @@ top: -220px;
 
 .radio_option label {
   margin-right: 1em;
+  cursor: pointer;
 }
 .radio_option label:before {
   content: "";
