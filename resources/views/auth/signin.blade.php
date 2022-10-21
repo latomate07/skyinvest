@@ -22,12 +22,17 @@
                     <div class="row clearfix">
                         <div class="col_half">
                             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                                <input type="text" name="name" placeholder="Nom complet" />
+                                <input type="text" name="name" placeholder="Nom complet" required/>
                             </div>
                         </div>
-                        <div class="col_half">
+                        <div class="col_half" id="enterprise_name_div">
                             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-building"></i></span>
-                                <input type="text" name="pseudo" placeholder="Nom de votre entreprise" required />
+                                <input type="text" name="enterprise_name" placeholder="Nom de votre entreprise" required />
+                            </div>
+                        </div>
+                        <div class="col_half" id="investor_name_div">
+                            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                                <input type="text" name="investor_name_div" placeholder="Nom d'utilisateur" required />
                             </div>
                         </div>
                     </div>
@@ -76,13 +81,20 @@
 
 @section('scripts')
 <script>
+    $('#investor_name_div').hide()
     $('input[name="role"]').on('change', function(){
         let value = $(this).val();
         switch (value) {
             case "Entreprise" : 
+                $('#investor_name_div').hide()
+                $('#enterprise_name_div').show()
                 $('#enterprise_description_div').show()
+                $('#enterprise_description_div').attr('required', true)
                 break;
             case "Investisseur" :
+                $('#investor_name_div').show()
+                $('#investor_name_div').attr('required', true)
+                $('#enterprise_name_div').hide()
                 $('#enterprise_description_div').hide()
                 break;
         }
