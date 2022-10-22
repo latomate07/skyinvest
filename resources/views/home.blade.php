@@ -8,33 +8,36 @@
     </div>
     <div class="middle-block">
         @include('components.home.navTab')
-        @forelse ($projects as $project)
-            @include('components.project.item')
-        @empty
-            <div id="allProjectsNotFound">
-                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_awc77jfz.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: 0 auto;"  loop  autoplay></lottie-player>    
-                <p style="text-align: center; margin-top: 50px">Oups ! Aucun projet n'a été trouvé.</p>    
-            </div>
-        @endforelse
-
-        {{-- @forelse ($projects_liked as $project_liked)
-            @dd($project_liked)
-            @include('components.project.likedItem')
-        @empty
-            <div id="projectsLikedNotFound">
-                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_awc77jfz.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: 0 auto;"  loop  autoplay></lottie-player>    
-                <p style="text-align: center; margin-top: 50px">Oups ! Aucun projet n'a été trouvé.</p>
-            </div>
-        @endforelse --}}
-
-        @forelse ($latest_projects as $latest_project)
-            @include('components.project.latestItem')
-        @empty
-            <div id="latestProjectsNotFound">
-                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_awc77jfz.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: 0 auto;"  loop  autoplay></lottie-player>    
-                <p style="text-align: center; margin-top: 50px">Oups ! Aucun projet n'a été trouvé.</p>
-            </div>
-        @endforelse
+        <div id="allProjectsDiv">
+            @forelse ($projects as $project)
+                @include('components.project.item')
+            @empty
+                <div id="allProjectsNotFound">
+                    <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_awc77jfz.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: 0 auto;"  loop  autoplay></lottie-player>    
+                    <p style="text-align: center; margin-top: 50px">Oups ! Aucun projet n'a été trouvé.</p>    
+                </div>
+            @endforelse
+        </div>
+        {{-- <div id="projectsLikedDiv">
+            @forelse ($projects_liked as $project_liked)
+                @include('components.project.likedItem')
+            @empty
+                <div id="projectsLikedNotFound">
+                    <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_awc77jfz.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: 0 auto;"  loop  autoplay></lottie-player>    
+                    <p style="text-align: center; margin-top: 50px">Oups ! Aucun projet n'a été trouvé.</p>
+                </div>
+            @endforelse
+        </div> --}}
+        <div id="latestProjectsDiv">
+            @forelse ($latest_projects as $latest_project)
+                @include('components.project.latestItem')
+            @empty
+                <div id="latestProjectsNotFound">
+                    <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_awc77jfz.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: 0 auto;"  loop  autoplay></lottie-player>    
+                    <p style="text-align: center; margin-top: 50px">Oups ! Aucun projet n'a été trouvé.</p>
+                </div>
+            @endforelse
+        </div>
     </div>
     <div class="right">
         @include('components.home.right-aside')
@@ -44,15 +47,11 @@
 
 @section('scripts')
 <script>
-    // Hide Other projects
-    $('#latestProjects').hide()
-    $('#projectsLiked').hide()
+    // Hide Other projects section
+    $('#latestProjectsDiv').hide()
+    $('#projectsLikedDiv').hide()
 
-    // Hide Not found animation
-    $('#projectsLikedNotFound').hide()
-    $('#latestProjectsNotFound').hide()
-
-    // Hide other projects section
+    // Like Functionnality
     $('.likeProject').on('click', function(){
         $(this).toggleClass('projectIsLiked')
         $.ajax({
@@ -81,7 +80,7 @@
 
     viewProjectsTabs.home.on('click', function(){
         // Show right section
-        $('#allProjects').show()
+        $('#allProjectsDiv').show()
 
         if(!$(this).hasClass('active')){
             $(this).addClass('active')
@@ -90,8 +89,8 @@
             viewProjectsTabs.liked.removeClass('active')
 
             // Hide Other projects
-            $('#latestProjects').hide()
-            $('#projectsLiked').hide()
+            $('#latestProjectsDiv').hide()
+            $('#projectsLikedDiv').hide()
 
             $.ajax({
                 url: "{{ route('client.project.wished') }}",
@@ -114,7 +113,7 @@
 
     viewProjectsTabs.latest.on('click', function(){
         // Show right section
-        $('#latestProjects').show()
+        $('#latestProjectsDiv').show()
 
         if(!$(this).hasClass('active')){
             $(this).addClass('active')
@@ -122,8 +121,8 @@
             viewProjectsTabs.home.removeClass('active')
             viewProjectsTabs.liked.removeClass('active')
             // Hide Other projects
-            $('#allProjects').hide()
-            $('#projectsLiked').hide()
+            $('#allProjectsDiv').hide()
+            $('#projectsLikedDiv').hide()
 
             $.ajax({
                 url: "{{ route('client.project.wished') }}",
@@ -149,7 +148,7 @@
 
     viewProjectsTabs.liked.on('click', function(){
          // Show right section
-         $('#projectsLiked').show()
+         $('#projectsLikedDiv').show()
 
         if(!$(this).hasClass('active')){
             $(this).addClass('active')
@@ -157,8 +156,8 @@
             viewProjectsTabs.home.removeClass('active')
             viewProjectsTabs.latest.removeClass('active')
             // Hide Other projects
-            $('#allProjects').hide()
-            $('#latestProjects').hide()
+            $('#allProjectsDiv').hide()
+            $('#latestProjectsDiv').hide()
 
             $.ajax({
                 url: "{{ route('client.project.wished') }}",
