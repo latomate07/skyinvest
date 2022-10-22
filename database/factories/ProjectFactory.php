@@ -19,7 +19,7 @@ class ProjectFactory extends Factory
     {
         return [
             'name' => fake()->text(45),
-            'description' => fake()->text(400),
+            'description' => fake()->text(300),
             'amount' => fake()->numberBetween(1, 2000),
             'location' => fake()->city(),
             'campaignTime' => fake()->numberBetween(1, 10),
@@ -28,8 +28,8 @@ class ProjectFactory extends Factory
             'ytbVideo' => NULL,
             'docs' => NULL,
             'totalViews' => fake()->randomNumber(),
-            'type_return_on_investissment' => fake()->randomElement(['Annuel', 'Trimestriel', 'Mensuel']),
-            'user_id' => User::all()->random()->id
+            'type_return_on_investissment' => fake()->randomElement(['An', 'Trimestre', 'Mois']),
+            'user_id' => User::where('role', 'Entreprise')->get()->random()->id
         ];
     }
 }
