@@ -10,7 +10,7 @@
             @endif
             <div class="usersInformation">
                 <h3 class="username">
-                    {{ $latest_project->user->name }}
+                    {{ $latest_project->user->enterprise_name }}
                 </h3>
                 <p class="publishdate">Publié le :
                     {{ \Carbon\Carbon::parse($latest_project->created_at)->format('d/m/Y') }}
