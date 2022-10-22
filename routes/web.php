@@ -28,7 +28,6 @@ Route::group(['middleware' => 'guest'], function() {
     // Store user
     Route::post('/inscription', [AuthController::class, 'register'])->name('auth.signin');
 });
-
 Route::group(['middleware' => 'auth'], function() {
     // Logout user
     Route::get('/userwish/logout', [AuthController::class, 'logout'])->name('auth.logout');
@@ -42,8 +41,6 @@ Route::group(['middleware' => 'auth'], function() {
     /**************** PROJECT ROUTE *****************/
     //-- Access Project Publish Page
     Route::get('/projet/publication', [ProjectController::class, 'showProjectPage'])->name('client.project.publish');
-    //-- Show project
-    Route::get('/projet/{id}', [ProjectController::class, 'show'])->name('client.project.show');
     //-- Store project
     Route::post('/projet/publication', [ProjectController::class, 'store'])->name('client.project.create');
     //-- Edit project
@@ -55,6 +52,8 @@ Route::group(['middleware' => 'auth'], function() {
     //-- Get Projects User needs
     Route::get('/project/wished', [HomeController::class, 'switchProjects'])->name('client.project.wished');
 });
+//-- Show project
+Route::get('/projet/{id}', [ProjectController::class, 'show'])->name('client.project.show');
 
 /**************** COMMON FUNCTIONNALITIES ROUTES **********/
 Route::post('/ajax/livesearch', [ProjectController::class, 'liveSearch'])->name('ajax.search');
