@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="right-side">
-                            <h4><a href="javascript:void(0)">{{ auth()->user()->pseudo }}</a></h4>
+                            <h4><a href="javascript:void(0)">{{  auth()->user()->role == "Investisseur" ? auth()->user()->investor_username : auth()->user()->enterprise_name }}</a></h4>
                             <a class="userMail" href="javascript:void(0)">{{ auth()->user()->email }}</a>
                         </div>
                     </div>
