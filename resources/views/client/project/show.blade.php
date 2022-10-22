@@ -90,7 +90,7 @@
                     <div class="time">
                         <span class="spanTitle">Durée</span>
                         <span class="result">
-                            {{ $project->campaignTime }}
+                            {{ $project->campaignTime . " mois"}}
                         </span>
                     </div>
                     <div class="risque">
