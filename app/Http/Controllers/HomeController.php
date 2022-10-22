@@ -14,21 +14,25 @@ class HomeController extends Controller
         $projects = Project::all();
         $projects_recently_published = Project::latest()->get();
         $user = auth()->check() ? User::where('id', auth()->user()->id)->first() : '';
-        $projects_liked = $user->project_liked()
-                               ->where('is_liked', 'yes')
-                               ->get();
-        $show_projects_liked = [];
-        foreach($projects_liked as $project_liked)
-        {
-            $show_project_liked = Project::where('id', $project_liked->likeable_id)
-                                        ->latest()
-                                        ->first();
-            array_push($show_projects_liked, $show_project_liked);
-        }
 
+        if($user !== '')
+        {
+            $projects_liked = $user->project_liked()
+                                ->where('is_liked', 'yes')
+                                ->get();
+            $show_projects_liked = [];
+            foreach($projects_liked as $project_liked)
+            {
+            $show_project_liked = Project::where('id', $project_liked->likeable_id)
+                                    ->latest()
+                                    ->first();
+            array_push($show_projects_liked, $show_project_liked);
+            }
+        }
+    
         return view('home', [
             'projects' => $projects,
-            'projects_liked' => $show_projects_liked,
+            'projects_liked' => $show_projects_liked ?? [],
             'latest_projects' => $projects_recently_published
         ]);
     }
