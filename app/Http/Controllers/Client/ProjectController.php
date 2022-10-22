@@ -107,9 +107,14 @@ class ProjectController extends Controller
             $likes = ProjectLikes::create(['likeable_id' => $project->id, 'likeable_type' => Project::class, 'is_liked' => 'yes']);
             return $likes;
         });
-        if($request->is_active !== "true")
+        switch($request->is_active)
         {
-            $project->likes()->update(['is_liked' => 'no']);
+            case "true": 
+                $project->likes()->update(['is_liked' => 'yes']);
+                break;
+            case "false":
+                $project->likes()->update(['is_liked' => 'no']);
+                break;
         }
 
         return response()->json($project->likes, 200);
