@@ -18,7 +18,7 @@
                 </div>
             @endforelse
         </div>
-        {{-- <div id="projectsLikedDiv">
+        <div id="projectsLikedDiv">
             @forelse ($projects_liked as $project_liked)
                 @include('components.project.likedItem')
             @empty
@@ -27,7 +27,7 @@
                     <p style="text-align: center; margin-top: 50px">Oups ! Aucun projet n'a été trouvé.</p>
                 </div>
             @endforelse
-        </div> --}}
+        </div>
         <div id="latestProjectsDiv">
             @forelse ($latest_projects as $latest_project)
                 @include('components.project.latestItem')
