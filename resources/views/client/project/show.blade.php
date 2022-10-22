@@ -5,9 +5,11 @@
             <!-- Introduction du projet -->
             <div class="left">
                 <!-- Illustration du projet -->
-                @foreach ($project->medias as $image)
+                @forelse ($project->medias as $image)
                     <img class="illustration" src="{{ asset('assets/client/images') . "/" . $image->url }}">
-                @endforeach
+                @empty
+                    <img class="illustration" src="{{ asset('assets/images/defaultProjectImage.jpeg') }}" alt="">
+                @endforelse
             </div>
             <div class="right">
                 <div class="top-side">
@@ -18,13 +20,12 @@
                         <img class="avatar"
                             src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                             width="10px" height="0">
-                        <span class="authorName"><strong>
-                            {{ $project->user->name }}
-                            </strong></span>
+                        <span class="authorName">
+                            <strong>{{ $project->user->enterprise_name }}</strong>
+                        </span>
                     </div>
                     <p class="authorDescription">
-                        loremIpsum bla-bla-bla
-                        bla-bla-blabla-bla-blabla-bla-blabla-bla-blabla-bla-blabla-bla-blabla-bla-blabla-bla-blabla-bla-blabla-bla-blabla-bla-blabla-bla-blabla-bla-blabla-bla-blabla-bla-blabla-bla-blabla-bla-bla
+                        {{ $project->user->enterprise_description }}
                     </p>
                 </div>
                 <div class="bottom-side">
@@ -89,7 +90,7 @@
                     <div class="time">
                         <span class="spanTitle">Durée</span>
                         <span class="result">
-                            {{ $project->campaignTime }}
+                            {{ $project->campaignTime . " mois"}}
                         </span>
                     </div>
                     <div class="risque">

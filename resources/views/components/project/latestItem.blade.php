@@ -37,9 +37,13 @@
             </div>
         </div>
         <div class="right">
-            @foreach ($latest_project->medias as $image)
-                <img class="projectImage" src="{{ asset('assets/client/images') . "/" . $image->url }}">
-            @endforeach
+            <div class="right">
+                @forelse ($latest_project->medias as $image)
+                    <img class="projectImage" src="{{ asset('assets/client/images') . "/" . $image->url }}">
+                @empty
+                    <img class="projectImage" src="{{ asset('assets/images/defaultProjectImage.jpeg') }}" alt="">
+                @endforelse
+            </div>
         </div>
 
         <div class="left onmobile" style="display:none">
