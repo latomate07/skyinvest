@@ -41,7 +41,7 @@
                     <div class="middle-content">
                         <div class="top-elements">
                             <i class="fa fa-circle" style="color:gray"></i>
-                            <p class="info">profil <strong>non validé</strong></p>
+                            <p class="info">profil <strong>{{ $isReadyToInvest == true ? 'validé' : 'non validé' }}</strong></p>
                         </div>
                         <div class="middle-elements">
                             <i class="fa fa-phone"></i>
