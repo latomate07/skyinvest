@@ -355,5 +355,47 @@
             }
         })
     })
+
+    // Toggle active tab to bottom-section
+    $('.firstStep').on('click', function() {
+        // Add active class to this tab nav
+        $('.stepOne').addClass('active')
+        // Remove inactive class to this tab nav
+        $('.stepOne').removeClass('inactive')
+        // Remove active class for other tab nav
+        $('.stepTwo').removeClass('active')
+        $('.stepThird').removeClass('active')
+        $('.stepFour').removeClass('active')
+    })
+    $('.secondStep').on('click', function() {
+        // Add active class to this tab nav
+        $('.stepTwo').addClass('active')
+        // Remove inactive class to this tab nav
+        $('.stepTwo').removeClass('inactive')
+        // Remove active class for other tab nav
+        $('.stepOne').removeClass('active')
+        $('.stepThird').removeClass('active')
+        $('.stepFour').removeClass('active')
+    })
+    $('.thirdStep').on('click', function() {
+        // Add active class to this tab nav
+        $('.stepThird').addClass('active')
+        // Remove inactive class to this tab nav
+        $('.stepThird').removeClass('inactive')
+        // Remove active class for other tab nav
+        $('.stepTwo').removeClass('active')
+        $('.stepOne').removeClass('active')
+        $('.stepFour').removeClass('active')
+    })
+    $('.fourStep').on('click', function() {
+        // Add active class to this tab nav
+        $('.stepFour').addClass('active')
+        // Remove inactive class to this tab nav
+        $('.stepFour').removeClass('inactive')
+        // Remove active class for other tab nav
+        $('.stepOne').removeClass('active')
+        $('.stepThird').removeClass('active')
+        $('.stepTwo').removeClass('active')
+    })
 </script>
 @endsection
