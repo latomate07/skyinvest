@@ -32,15 +32,53 @@ trait DashboardTrait
     /**
      * Check if investissor is ready to invest
      */
-    public function isReadyToInvest() : bool
+    public static function isReadyToInvest(int $id) : bool
     {
+        $user = User::find($id);
+        if($user->role !== 'Investisseur')
+        {
+            return false;
+        }
+        $required_informations = [
+            'adresse' => $user->adresse,
+            'iban' => $user->iban,
+            'investor_username' => $user->investor_username,
+            'source_of_income' => $user->source_of_income,
+            'nationality' => $user->nationality,
+            'genre' => $user->genre,
+            'birthday_date' => $user->birthday_date,
+            'residence_country' => $user->residence_country,
+            'city' => $user->city,
+            // 'home_justificatif',
+            'relation_to_call_name' => $user->relation_to_call_name,
+            'relation_to_call_adress' => $user->relation_to_call_adress,
+            'relation_to_call_phoneNumber' => $user->relation_to_call_phoneNumber,
+            'bank_account_owner_name' => $user->bank_account_owner_name,
+            'bank_account_owner_lastName' => $user->bank_account_owner_lastName,
+            'bank_account_name' => $user->bank_account_name,
+            'source_of_income_justificatif' => $user->source_of_income_justificatif,
+            // 'source_of_income'
+        ];
+
+        foreach($required_informations as $key => $value)
+        {
+            if(is_null($value))
+            {
+                return false;
+            }
+            $user->update(['isReadyToInvest' => 1]);
+            return true;
+        }
+
+        return false;
     }
 
      /**
      * Check if enterprise is ready to publish project
      */
-    public function isReadyToPublish() : bool
+    public static function isReadyToPublish() : bool
     {
+        return false;
     }
 }
 
