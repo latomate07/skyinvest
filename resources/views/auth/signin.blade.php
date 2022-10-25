@@ -27,12 +27,12 @@
                         </div>
                         <div class="col_half" id="enterprise_name_div">
                             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-building"></i></span>
-                                <input type="text" name="enterprise_name" placeholder="Nom de votre entreprise" required />
+                                <input type="text" name="enterprise_name" placeholder="Nom de votre entreprise"/>
                             </div>
                         </div>
                         <div class="col_half" id="investor_name_div">
                             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                                <input type="text" name="investor_name_div" placeholder="Nom d'utilisateur" required />
+                                <input type="text" name="investor_name_div" placeholder="Nom d'utilisateur"/>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="input_field" id="enterprise_description_div">
                         <span><i aria-hidden="true" class="fa fa-building"></i></span>
-                        <textarea name="enterprise_description" placeholder="Veuillez décrire votre entreprise ici..." id="enterprise_description" required></textarea>
+                        <textarea name="enterprise_description" placeholder="Veuillez décrire votre entreprise ici..." id="enterprise_description"></textarea>
                     </div>
                     <div class="input_field select_option">
                         <select name="country">
