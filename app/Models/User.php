@@ -91,4 +91,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(ProjectLikes::class, 'like_by');
     }
+
+    /**
+     * Get User Attributs
+     */
+    public function getFillables()
+    {
+        return $this->fillable;
+    }
 }
