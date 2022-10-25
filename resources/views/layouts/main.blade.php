@@ -21,6 +21,8 @@
         @yield('content')
         @include('partials.footer')
     </div>
+    {{-- Notifications blocks --}}
+    @include('components.global.success')
 </body>
 @yield('scripts')
 {{-- Live Search  --}}
