@@ -27,7 +27,32 @@ class User extends Authenticatable
         'country',
         'logo',
         'isAgreedWithTerms',
-        'wishNewsletter'
+        'wishNewsletter',
+        'enterprise_name',
+        'enterprise_description',
+        'neph_number',
+        'juridique_status',
+        'bilan_enterprise',
+        'adresse',
+        'phone_number',
+        'iban',
+        'identity_card',
+        'investor_username',
+        'source_of_income',
+        'user_profession',
+        'nationality',
+        'genre',
+        'birthday_date',
+        'residence_country',
+        'city',
+        'home_justificatif',
+        'relation_to_call_name',
+        'relation_to_call_adress',
+        'relation_to_call_phoneNumber',
+        'bank_account_owner_name',
+        'bank_account_owner_lastName',
+        'bank_account_name',
+        'source_of_income_justificatif'
     ];
 
     /**
