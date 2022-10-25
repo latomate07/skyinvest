@@ -157,6 +157,7 @@
                     </form> 
 
                     <form id="step-2" class="hiddenBlock dashboardForm">
+                        @csrf
                         <h3 class="title">Vérification de votre identité et votre adresse</h3>
                         <div class="sectionContainer">
                             <div class="left-content">
@@ -168,37 +169,39 @@
                                 <input type="file" name="userAdressFile">
                             </div>
                             <div class="right-content">
-                                <label for="userFamily">Personne à contacter en cas de décès</label>
-                                <input type="text" placeholder="Indiquez le nom de la personne" name="userFamily">
-                                <label for="userFamily">Adresse de la personne à contacter en cas de décès</label>
-                                <input type="text" placeholder="Indiquez l'adresse de la personne" name="userFamily">
-                                <label for="userFamily">Numéro de téléphone de la personne à contacter en cas de décès</label>
-                                <input type="text" placeholder="Indiquez le numéro de téléphone de la personne" name="userFamily">
+                                <label for="userFamilyName">Personne à contacter en cas de décès</label>
+                                <input type="text" placeholder="Indiquez le nom de la personne" name="userFamilyName">
+                                <label for="userFamilyAdress">Adresse de la personne à contacter en cas de décès</label>
+                                <input type="text" placeholder="Indiquez l'adresse de la personne" name="userFamilyAdress">
+                                <label for="userFamilyTel">Numéro de téléphone de la personne à contacter en cas de décès</label>
+                                <input type="text" placeholder="Indiquez le numéro de téléphone de la personne" name="userFamilyTel">
                             </div>
                         </div>
                         <input type="submit" class="btn" value="Continuer">
                     </form>
 
                     <form id="step-3" class="hiddenBlock dashboardForm">
+                        @csrf
                         <h3 class="title">Ajouter un compte bancaire</h3>
                         <div class="sectionContainer">
                             <div class="left-content">
-                                <label for="userBankOwner">Nom du détenteur</label>
-                                <input type="text" placeholder="Le nom du détenteur" name="userBankOwner">
-                                <label for="userBankOwner">Prénom du détenteur</label>
-                                <input type="text" placeholder="Le prénom du détenteur" name="userBankOwner">
+                                <label for="bankOwnerName">Nom du détenteur</label>
+                                <input type="text" placeholder="Le nom du détenteur" name="bankOwnerName">
+                                <label for="bankOwnerLastName">Prénom du détenteur</label>
+                                <input type="text" placeholder="Le prénom du détenteur" name="bankOwnerLastName">
                             </div>
                             <div class="right-content">
-                                <label for="userBankName">Nom de la banque</label>
-                                <input type="text" placeholder="Nom de votre banque" name="userBankName">
-                                <label for="userBankDetails">IBAN</label>
-                                <input type="text" name="userBankDetails" placeholder="Votre IBAN">
+                                <label for="bankName">Nom de la banque</label>
+                                <input type="text" placeholder="Nom de votre banque" name="bankName">
+                                <label for="bankNameIban">IBAN</label>
+                                <input type="text" name="bankNameIban" placeholder="Votre IBAN">
                             </div>
                         </div>
                         <input type="submit" class="btn" value="Continuer">
                     </form>
 
                     <form id="step-4" class="hiddenBlock dashboardForm">
+                        @csrf
                         <h3 class="title">Lutte anti-blanchiment</h3>
                         <div class="sectionContainer">
                             <div class="left-content">
@@ -328,7 +331,43 @@
             'userFullName': $('input[name="userFullName"]').val()
         }
         $.ajax({
-            url: " {{ route('client.dashboard.store') }} ",
+            url: " {{ route('investor.storeUserInfos.stepOne') }} ",
+            type: "POST",
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'data': data
+            },
+            success: function(data){
+                $('#successNotifBlock').css({
+                    'transform': 'translateX(0px)',
+                    'color': 'white'
+                })
+                // Fill content
+                $('#notif_message_title').html('<strong>Notification :</strong>');
+                $('#notif_message_content').html(data.message);
+
+                // Hide block after 3 seconds
+                setTimeout(() => {
+                    $('#successNotifBlock').css({
+                        'transform': 'translateX(420px)'
+                    })
+                }, 3000);
+            },
+            error: function(error){
+                console.log(error);
+            }
+        })
+    })
+    $('#step-2').on('submit', function(event){
+        event.preventDefault();
+        let data = {
+            'userAdress': $('input[name="userAdress"]').val(),
+            'userCity': $('input[name="userCity"]').val(),
+            'userFamilyName': $('input[name="userFamilyName"]').val(),
+            'userFamilyAdress': $('input[name="userFamilyAdress"]').val(),
+            'userFamilyTel': $('input[name="userFamilyTel"]').val()    }
+        $.ajax({
+            url: " {{ route('investor.storeUserInfos.stepTwo') }} ",
             type: "POST",
             data: {
                 '_token': '{{ csrf_token() }}',
