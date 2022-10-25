@@ -30,32 +30,6 @@ trait DashboardTrait
     }
 
     /**
-     * Update user informations
-     */
-    public function storeSupplementUserInformation(Request $request)
-    {
-        $user = User::findOrfail(auth()->user()->id);
-        $data = [];
-        foreach($request->except('_token') as $request_data)
-        {
-            array_push($data, $request_data);
-        }
-        $user_update = $user->update([
-            // '' =>  $data[0]['userBirthCountry'],
-            'birthday_date' =>  $data[0]['userBirthday'],
-            'name' => $data[0]['userFullName'],
-            'genre' => $data[0]['userGenre'],
-            'nationality' => $data[0]['userNationality'],
-            'residence_country' => $data[0]['userResidence']
-        ]);
-        $response = [
-            'user' => auth()->user(),
-            'message' => $user_update == true ? 'Vos informations ont bien été mis à jour.' : 'Une erreur a été produite'
-        ];
-        return response()->json($response, 200);
-    }
-
-    /**
      * Check if investissor is ready to invest
      */
     public function isReadyToInvest() : bool
