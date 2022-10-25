@@ -10,13 +10,15 @@ use App\Http\Controllers\Controller;
 class DashboardController extends Controller
 {
     use DashboardTrait;
+
     public function showDashboardPage(Request $request)
     {
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
 
         return view('client.dashboard.index', [
-            'user' => $user
+            'user' => $user,
+            'isReadyToInvest' => self::isReadyToInvest($user_id)
         ]);
     }
 
