@@ -40,7 +40,7 @@
                     </div>
                     <div class="middle-content">
                         <div class="top-elements">
-                            <i class="fa fa-x"></i>
+                            <i class="fa fa-circle" style="color:gray"></i>
                             <p class="info">profil <strong>non validé</strong></p>
                         </div>
                         <div class="middle-elements">
@@ -48,7 +48,7 @@
                             <p class="info">Non défini</p>
                         </div>
                         <div class="bottom-elements">
-                            <i class="fa fa-x"></i>
+                            <i class="fa fa-circle-check"></i>
                             <p class="info">newsletter <strong>active</strong></p>
                         </div>
                     </div>
@@ -100,32 +100,41 @@
                 
                 <div class="right"> <!-- Contenu flexible en fonction de la navigation -->
                     <form id="step-1" class="dashboardForm">
+                        @csrf
                         <h3 class="title">Compléter vos données personnelles</h3>
                         <div class="sectionContainer">
                             <div class="left-content">
                                 <label for="userFullName">Nom complet</label>
                                 <input type="text" value="{{ auth()->user()->name }}" name="userFullName">
-                                <label for="userResidence">Pays de naissance</label>
-                            <select name="userNationality">
-                                <option value="France">France</option>
-                                <option value="Belgique">Belgique</option>
-                                <option value="Suisse">Suisse</option>
-                                <option value="Maroc">Maroc</option>
-                                <option value="Niger">Niger</option>
+                                <label for="userBirthCountry">Pays de naissance</label>
+                                <select name="userBirthCountry">
+                                    @if (auth()->user()->residence_country != "")
+                                        <option value="{{ auth()->user()->residence_country }}">{{ auth()->user()->residence_country }}</option>
+                                    @endif
+                                    <option value="France">France</option>
+                                    <option value="Belgique">Belgique</option>
+                                    <option value="Suisse">Suisse</option>
+                                    <option value="Maroc">Maroc</option>
+                                    <option value="Niger">Niger</option>
                                 </select>
-                            
                                 <label for="userNationality">Nationalité</label>
                                 <select name="userNationality">
-                                <option value="France">France</option>
-                                <option value="Belgique">Belgique</option>
-                                <option value="Suisse">Suisse</option>
-                                <option value="Maroc">Maroc</option>
-                                <option value="Niger">Niger</option>
+                                @if (auth()->user()->nationality != "")
+                                    <option value="{{ auth()->user()->nationality }}">{{ auth()->user()->nationality }}</option>
+                                @endif
+                                    <option value="France">France</option>
+                                    <option value="Belgique">Belgique</option>
+                                    <option value="Suisse">Suisse</option>
+                                    <option value="Maroc">Maroc</option>
+                                    <option value="Niger">Niger</option>
                                 </select>
                             </div>
                             <div class="right-content">
-                                <label for="userBirdResidence">Pays de résidence</label>
-                                <select name="userBirdResidence">
+                                <label for="userResidence">Pays de résidence</label>
+                                <select name="userResidence">
+                                    @if (auth()->user()->residence_country != "")
+                                        <option value="{{ auth()->user()->residence_country }}">{{ auth()->user()->residence_country }}</option>
+                                    @endif
                                     <option value="France">France</option>
                                     <option value="Belgique">Belgique</option>
                                     <option value="Suisse">Suisse</option>
@@ -133,9 +142,12 @@
                                     <option value="Niger">Niger</option>
                                 </select>
                                 <label for="userBirthday">Date de naissance</label>
-                                <input type="date" name="userBirthday">
+                                <input type="date" name="userBirthday" value="{{ auth()->user()->birthday_date }}">
                                 <label for="userGenre">Genre</label>
                                 <select name="userGenre">
+                                    @if (auth()->user()->genre != "")
+                                        <option value="{{ auth()->user()->genre }}">{{ auth()->user()->genre }}</option>
+                                    @endif
                                     <option value="Homme">Homme</option>
                                     <option value="Femme">Femme</option>
                                 </select>
@@ -302,4 +314,33 @@
 
 @section('scripts')
 <script src="{{ asset('assets/js/dashboard/script.js') }}"></script>
+
+<script>
+    // Update User Informations
+    $('#step-1').on('submit', function(event){
+        event.preventDefault();
+        let data = {
+            'userBirthCountry': $('select[name="userBirthCountry"]').val(),
+            'userResidence': $('select[name="userResidence"]').val(),
+            'userNationality': $('select[name="userNationality"]').val(),
+            'userBirthday': $('input[name="userBirthday"]').val(),
+            'userGenre': $('select[name="userGenre"]').val(),
+            'userFullName': $('input[name="userFullName"]').val()
+        }
+        $.ajax({
+            url: " {{ route('client.dashboard.store') }} ",
+            type: "POST",
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'data': data
+            },
+            success: function(data){
+                console.log(data.message);
+            },
+            error: function(error){
+                console.log(error);
+            }
+        })
+    })
+</script>
 @endsection
