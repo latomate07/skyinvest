@@ -335,7 +335,20 @@
                 'data': data
             },
             success: function(data){
-                console.log(data.message);
+                $('#successNotifBlock').css({
+                    'transform': 'translateX(0px)',
+                    'color': 'white'
+                })
+                // Fill content
+                $('#notif_message_title').html('<strong>Notification :</strong>');
+                $('#notif_message_content').html(data.message);
+
+                // Hide block after 3 seconds
+                setTimeout(() => {
+                    $('#successNotifBlock').css({
+                        'transform': 'translateX(420px)'
+                    })
+                }, 3000);
             },
             error: function(error){
                 console.log(error);
