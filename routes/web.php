@@ -34,9 +34,15 @@ Route::group(['middleware' => 'auth'], function() {
 
     /**************** DASHBOARD ROUTE *****************/
     // Access Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'showDashboardPage'])->name('client.dashboard');
-    Route::post('/ajax/dashboard', [DashboardController::class, 'liveChange'])->name('client.dashboard.ajax');
-    Route::post('/dashboard/userinformations', [DashboardController::class, 'storeSupplementUserInformation'])->name('client.dashboard.store');
+    Route::group(['prefix' => 'dashboard'], function() {
+        Route::get('/', [DashboardController::class, 'showDashboardPage'])->name('client.dashboard');
+        Route::post('/ajax/dashboard', [DashboardController::class, 'liveChange'])->name('client.dashboard.ajax');
+        /** Store Investisor Informations **/
+        Route::post('/userinformations/stepOne', [DashboardController::class, 'investorStoreInfosStepOne'])->name('investor.storeUserInfos.stepOne');
+        Route::post('/userinformations/stepTwo', [DashboardController::class, 'investorStoreInfosStepTwo'])->name('investor.storeUserInfos.stepTwo');
+        Route::post('/userinformations/stepThree', [DashboardController::class, 'investorStoreInfosStepThree'])->name('investor.storeUserInfos.stepThree');
+        Route::post('/userinformations/stepFourth', [DashboardController::class, 'investorStoreInfosStepFourth'])->name('investor.storeUserInfos.stepFourth');
+    });
 
     /**************** PROJECT ROUTE *****************/
     //-- Access Project Publish Page
