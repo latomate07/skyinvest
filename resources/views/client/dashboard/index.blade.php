@@ -40,7 +40,7 @@
                     </div>
                     <div class="middle-content">
                         <div class="top-elements">
-                            <i class="fa fa-circle" style="color:gray"></i>
+                            <i class="fa fa-circle" style="{{ $isReadyToInvest == true ? 'color:green' : 'color:gray' }}"></i>
                             <p class="info">profil <strong>{{ $isReadyToInvest == true ? 'validé' : 'non validé' }}</strong></p>
                         </div>
                         <div class="middle-elements">
@@ -48,8 +48,8 @@
                             <p class="info">Non défini</p>
                         </div>
                         <div class="bottom-elements">
-                            <i class="fa fa-circle-check"></i>
-                            <p class="info">newsletter <strong>active</strong></p>
+                            <i class="fa fa-circle" style="{{ $user->wishNewsletter == "on" ? 'color:green' : 'color:gray' }}"></i>
+                            <p class="info">newsletter <strong>{{ $user->wishNewsletter == "on" ? 'active' : 'non active' }}</strong></p>
                         </div>
                     </div>
 
