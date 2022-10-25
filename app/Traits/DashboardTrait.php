@@ -48,11 +48,11 @@ trait DashboardTrait
             'nationality' => $data[0]['userNationality'],
             'residence_country' => $data[0]['userResidence']
         ]);
-        $data = [
+        $response = [
             'user' => auth()->user(),
             'message' => $user_update == true ? 'Vos informations ont bien été mis à jour.' : 'Une erreur a été produite'
         ];
-        return response()->json($data, 200);
+        return response()->json($response, 200);
     }
 
     /**
