@@ -162,19 +162,19 @@
                         <div class="sectionContainer">
                             <div class="left-content">
                                 <label for="userAdress">Adresse postale</label>
-                                <input type="text" placeholder="Votre adresse postale" name="userAdress">
+                                <input type="text" placeholder="Votre adresse postale" name="userAdress" value="{{ $user->adresse }}">
                                 <label for="userCity">Ville</label>
-                                <input type="text" placeholder="Votre ville" name="userCity">
+                                <input type="text" placeholder="Votre ville" name="userCity" value="{{ $user->city }}">
                                 <label for="userAdressFile">Justificatif de domicile</label>
                                 <input type="file" name="userAdressFile">
                             </div>
                             <div class="right-content">
                                 <label for="userFamilyName">Personne à contacter en cas de décès</label>
-                                <input type="text" placeholder="Indiquez le nom de la personne" name="userFamilyName">
+                                <input type="text" placeholder="Indiquez le nom de la personne" name="userFamilyName" value="{{ $user->relation_to_call_name }}">
                                 <label for="userFamilyAdress">Adresse de la personne à contacter en cas de décès</label>
-                                <input type="text" placeholder="Indiquez l'adresse de la personne" name="userFamilyAdress">
+                                <input type="text" placeholder="Indiquez l'adresse de la personne" name="userFamilyAdress" value="{{ $user->relation_to_call_adress }}">
                                 <label for="userFamilyTel">Numéro de téléphone de la personne à contacter en cas de décès</label>
-                                <input type="text" placeholder="Indiquez le numéro de téléphone de la personne" name="userFamilyTel">
+                                <input type="text" placeholder="Indiquez le numéro de téléphone de la personne" name="userFamilyTel" value="{{ $user->relation_to_call_phoneNumber }}">
                             </div>
                         </div>
                         <input type="submit" class="btn" value="Continuer">
@@ -186,15 +186,15 @@
                         <div class="sectionContainer">
                             <div class="left-content">
                                 <label for="bankOwnerName">Nom du détenteur</label>
-                                <input type="text" placeholder="Le nom du détenteur" name="bankOwnerName">
+                                <input type="text" placeholder="Le nom du détenteur" name="bankOwnerName" value="{{ $user->bank_account_owner_name }}">
                                 <label for="bankOwnerLastName">Prénom du détenteur</label>
-                                <input type="text" placeholder="Le prénom du détenteur" name="bankOwnerLastName">
+                                <input type="text" placeholder="Le prénom du détenteur" name="bankOwnerLastName" value="{{ $user->bank_account_owner_lastName }}">
                             </div>
                             <div class="right-content">
                                 <label for="bankName">Nom de la banque</label>
-                                <input type="text" placeholder="Nom de votre banque" name="bankName">
-                                <label for="bankNameIban">IBAN</label>
-                                <input type="text" name="bankNameIban" placeholder="Votre IBAN">
+                                <input type="text" placeholder="Nom de votre banque" name="bankName" value="{{ $user->bank_account_name }}">
+                                <label for="bankIban">IBAN</label>
+                                <input type="text" name="bankIban" placeholder="Votre IBAN" value="{{ $user->iban }}">
                             </div>
                         </div>
                         <input type="submit" class="btn" value="Continuer">
@@ -205,10 +205,10 @@
                         <h3 class="title">Lutte anti-blanchiment</h3>
                         <div class="sectionContainer">
                             <div class="left-content">
-                                <label for="userBankOwner">D'où proviennent vos revenues ?</label>
-                                <input type="text" placeholder="Rédigez en quelques mots, d'où proviennent vos revenues" name="userBanOwner">
-                                <label for="userBankOwner">Justificatif (Ajouter une fiche de paie ou autres justificatif)</label>
-                                <input type="file" name="userRevenues">
+                                <label for="source_of_incomes_description">D'où proviennent vos revenues ?</label>
+                                <input type="text" placeholder="Rédigez en quelques mots, d'où proviennent vos revenues" name="source_of_incomes_description" value="{{ $user->source_of_income_justificatif }}">
+                                <label for="source_of_incomes">Justificatif (Ajouter une fiche de paie ou autres justificatif)</label>
+                                <input type="file" name="source_of_incomes">
                             </div>
                         </div>
                         <input type="submit" class="btn" value="Continuer">
@@ -394,6 +394,76 @@
             }
         })
     })
+    $('#step-3').on('submit', function(event){
+        event.preventDefault();
+        let data = {
+            'bankOwnerName': $('input[name="bankOwnerName"]').val(),
+            'bankOwnerLastName': $('input[name="bankOwnerLastName"]').val(),
+            'bankName': $('input[name="bankName"]').val(),
+            'bankIban': $('input[name="bankIban"]').val()
+        }
+        $.ajax({
+            url: " {{ route('investor.storeUserInfos.stepThree') }} ",
+            type: "POST",
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'data': data
+            },
+            success: function(data){
+                $('#successNotifBlock').css({
+                    'transform': 'translateX(0px)',
+                    'color': 'white'
+                })
+                // Fill content
+                $('#notif_message_title').html('<strong>Notification :</strong>');
+                $('#notif_message_content').html(data.message);
+
+                // Hide block after 3 seconds
+                setTimeout(() => {
+                    $('#successNotifBlock').css({
+                        'transform': 'translateX(420px)'
+                    })
+                }, 3000);
+            },
+            error: function(error){
+                console.log(error);
+            }
+        })
+    })
+    $('#step-4').on('submit', function(event){
+        event.preventDefault();
+        let data = {
+            'source_of_incomes_description': $('input[name="source_of_incomes_description"]').val(),
+            'userRevenues': $('input[name="userRevenues"]').val()   
+        }
+        $.ajax({
+            url: " {{ route('investor.storeUserInfos.stepFourth') }} ",
+            type: "POST",
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'data': data
+            },
+            success: function(data){
+                $('#successNotifBlock').css({
+                    'transform': 'translateX(0px)',
+                    'color': 'white'
+                })
+                // Fill content
+                $('#notif_message_title').html('<strong>Notification :</strong>');
+                $('#notif_message_content').html(data.message);
+
+                // Hide block after 3 seconds
+                setTimeout(() => {
+                    $('#successNotifBlock').css({
+                        'transform': 'translateX(420px)'
+                    })
+                }, 3000);
+            },
+            error: function(error){
+                console.log(error);
+            }
+        })
+    })
 
     // Toggle active tab to bottom-section
     $('.firstStep').on('click', function() {
@@ -403,8 +473,11 @@
         $('.stepOne').removeClass('inactive')
         // Remove active class for other tab nav
         $('.stepTwo').removeClass('active')
+        $('.stepTwo').addClass('inactive')
         $('.stepThird').removeClass('active')
+        $('.stepThird').addClass('inactive')
         $('.stepFour').removeClass('active')
+        $('.stepFour').addClass('inactive')
     })
     $('.secondStep').on('click', function() {
         // Add active class to this tab nav
@@ -413,8 +486,11 @@
         $('.stepTwo').removeClass('inactive')
         // Remove active class for other tab nav
         $('.stepOne').removeClass('active')
+        $('.stepOne').addClass('inactive')
         $('.stepThird').removeClass('active')
+        $('.stepThird').addClass('inactive')
         $('.stepFour').removeClass('active')
+        $('.stepFour').addClass('inactive')
     })
     $('.thirdStep').on('click', function() {
         // Add active class to this tab nav
@@ -423,8 +499,11 @@
         $('.stepThird').removeClass('inactive')
         // Remove active class for other tab nav
         $('.stepTwo').removeClass('active')
+        $('.stepTwo').addClass('inactive')
         $('.stepOne').removeClass('active')
+        $('.stepOne').addClass('inactive')
         $('.stepFour').removeClass('active')
+        $('.stepFour').addClass('inactive')
     })
     $('.fourStep').on('click', function() {
         // Add active class to this tab nav
@@ -433,8 +512,11 @@
         $('.stepFour').removeClass('inactive')
         // Remove active class for other tab nav
         $('.stepOne').removeClass('active')
+        $('.stepOne').addClass('inactive')
         $('.stepThird').removeClass('active')
+        $('.stepThird').addClass('inactive')
         $('.stepTwo').removeClass('active')
+        $('.stepTwo').addClass('inactive')
     })
 </script>
 @endsection
