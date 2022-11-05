@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\Client\ProjectController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,6 +61,8 @@ Route::group(['middleware' => 'auth'], function() {
 });
 //-- Show project
 Route::get('/projet/{id}', [ProjectController::class, 'show'])->name('client.project.show');
+//-- User Profil Page Route
+Route::get('profil/{id}', [ProfilController::class, 'index'])->name('client.show.user');
 
 /**************** COMMON FUNCTIONNALITIES ROUTES **********/
 Route::post('/ajax/livesearch', [ProjectController::class, 'liveSearch'])->name('ajax.search');
