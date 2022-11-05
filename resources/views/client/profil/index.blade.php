@@ -14,23 +14,37 @@
                 {{ $data->city .", ". $data->country  }}
             </span>
             <div class="actionBtns">
-                @if ($data->id == auth()->user()->id)
-                    <a href="{{ route('client.dashboard') }}" class="btn" style="text-decoration:none">
-                        <i class="fa fa-laptop"></i>
-                        Accéder au tableau de bord
-                    </a>
-                @else
-                    @if ($data->role == "Entreprise")
+                @auth
+                    @if ($data->id == auth()->user()->id)
+                        <a href="{{ route('client.dashboard') }}" class="btn" style="text-decoration:none">
+                            <i class="fa fa-laptop"></i>
+                            Accéder au tableau de bord
+                        </a>
+                    @else
+                        @if ($data->role == "Entreprise")
                         <a href="" class="btn" style="text-decoration:none">
                             <i class="fa fa-plus"></i>
                             Suivre
                         </a>
+                        @endif
+                        <a href="" class="btn" style="text-decoration:none">
+                            <i class="fa fa-envelope"></i>
+                            Contacter
+                        </a>
+                    @endif
+                @endauth
+                @guest
+                    @if ($data->role == "Entreprise")
+                    <a href="" class="btn" style="text-decoration:none">
+                        <i class="fa fa-plus"></i>
+                        Suivre
+                    </a>
                     @endif
                     <a href="" class="btn" style="text-decoration:none">
                         <i class="fa fa-envelope"></i>
                         Contacter
                     </a>
-                @endif
+                @endguest
             </div>
 
             
@@ -105,4 +119,28 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+<script>
+    // Like Functionnality
+    $('.likeProject').on('click', function(){
+        $(this).toggleClass('projectIsLiked')
+        $.ajax({
+            url: "{{ route('client.project.like') }}",
+            type: "POST",
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'project_id': $(this).attr('id'),
+                'is_active': $(this).hasClass('projectIsLiked') ? true : false
+            },
+            success: function(data){
+                console.log(data);
+            },
+            error: function(error){
+                console.log(error);
+            }
+        })
+    })
+</script>
 @endsection
