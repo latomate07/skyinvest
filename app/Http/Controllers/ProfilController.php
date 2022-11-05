@@ -12,7 +12,7 @@ class ProfilController extends Controller
      */
     public function index(User $id, Request $request)
     {
-        $data = User::find($id);
+        $data = User::find($id)->first();
 
         return view('client.profil.index', [
             'data' => $data
