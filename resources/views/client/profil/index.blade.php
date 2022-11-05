@@ -125,6 +125,7 @@
 <script>
     // Like Functionnality
     $('.likeProject').on('click', function(){
+        $(this).toggleClass('projectIsLiked')
         $.ajax({
             url: "{{ route('client.project.like') }}",
             type: "POST",
@@ -134,7 +135,6 @@
                 'is_active': $(this).hasClass('projectIsLiked') ? true : false
             },
             success: function(data){
-                $(this).toggleClass('projectIsLiked')
                 console.log(data);
             },
             error: function(error){
