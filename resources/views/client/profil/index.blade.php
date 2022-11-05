@@ -14,17 +14,26 @@
                 {{ $data->city .", ". $data->country  }}
             </span>
             <div class="actionBtns">
-                @if ($data->role == "Entreprise")
+                @if ($data->id == auth()->user()->id)
+                    <a href="{{ route('client.dashboard') }}" class="btn" style="text-decoration:none">
+                        <i class="fa fa-laptop"></i>
+                        Accéder au tableau de bord
+                    </a>
+                @else
+                    @if ($data->role == "Entreprise")
+                        <a href="" class="btn" style="text-decoration:none">
+                            <i class="fa fa-plus"></i>
+                            Suivre
+                        </a>
+                    @endif
                     <a href="" class="btn" style="text-decoration:none">
-                        <i class="fa fa-plus"></i>
-                        Suivre
+                        <i class="fa fa-envelope"></i>
+                        Contacter
                     </a>
                 @endif
-                <a href="" class="btn" style="text-decoration:none">
-                    <i class="fa fa-envelope"></i>
-                    Contacter
-                </a>
             </div>
+
+            
         </div>
     </div>
 
