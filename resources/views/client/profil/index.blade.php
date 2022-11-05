@@ -109,7 +109,7 @@
             <div class="userProjectsLiked">
                 <h2 style="margin-top: 20px">Projet(s) soutenu par {{ $data->investor_username }}</h2>
                 <hr>
-                @forelse ($data->project_liked as $project)
+                @forelse ($projects_liked as $project)
                     @include('client.profil.components.project')
                 @empty
                     <p class="projectsNotFound">Aucun projet soutenu.</p>
