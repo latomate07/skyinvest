@@ -23,6 +23,7 @@
     @include('partials.footer')
     {{-- Notifications blocks --}}
     @include('components.global.success')
+    @include('components.global.error')
 </body>
 @yield('scripts')
 {{-- Live Search  --}}
