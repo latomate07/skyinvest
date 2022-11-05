@@ -625,7 +625,7 @@ top: -220px;
     border-color: #088dcd;
 }
 
-.main .middle-block .project {
+.project {
     padding:1rem!important;
     color: inherit;
     box-shadow: 0 0 0 1px rgba(23, 23, 23, 0.05);
@@ -633,15 +633,15 @@ top: -220px;
     line-height:1.3;
     margin:20px auto;
 }
-.main .middle-block .project .topContent {
+.project .topContent {
   display:flex;
   justify-content:space-between;
   margin-bottom:10px;
 }
-.main .middle-block .project .left {
+.project .left {
   display:flex;
 }
-.main .middle-block .project .right a {
+.project .right a {
   text-decoration:none;
 }
 .main .right .howitworks .step {
@@ -650,28 +650,28 @@ top: -220px;
   border-radius:50%;
   margin-right:5px;
 }
-.main .middle-block .project .topContent .usersInformation {
+.project .topContent .usersInformation {
   margin-left:15px;
 }
-.main .middle-block .project .topContent .userLogo, .userLogo {
+.project .topContent .userLogo, .userLogo {
   border-radius:50%;
 }
-.main .middle-block .project .topContent .viewProfil {
+.project .topContent .viewProfil {
   float:right;
   left:auto!important;
 }
-.main .middle-block .project .projectInfo {
+.project .projectInfo {
   display:flex;
   justify-content:space-between;
   align-items:center;
   margin-bottom:20px;
 } 
 
-.main .middle-block .project .reaction {
+.project .reaction {
   display:flex;
   align-items:center
 }
-.main .middle-block .project .reaction .reactionBtn{
+.project .reaction .reactionBtn{
     background: #eae9ee;
     border-radius: 4px;
     color: #82828e;
@@ -684,26 +684,26 @@ top: -220px;
     margin-left:15px;
 }
 
-.main .middle-block .project .reaction .like .reactionBtn {
+.project .reaction .like .reactionBtn {
   margin-left:0!important;
 }
 
-.main .middle-block .project .projectContent {
+.project .projectContent {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
 }
 
-.main .middle-block .project .projectContent .left {
+.project .projectContent .left {
   display: flex;
   flex-direction: column;
   position: relative;
 }
-.main .middle-block .project .projectContent .left .content {
+.project .projectContent .left .content {
   height: 75px;
   overflow: hidden;
 }
 
-.main .middle-block .project .projectContent .left .progress {
+.project .projectContent .left .progress {
   margin-bottom:10px;
   position: absolute;
   bottom: -12px;
@@ -713,7 +713,7 @@ top: -220px;
 }
 
 /*
-.main .middle-block .project .projectContent .left .progress .showMoreText {
+.project .projectContent .left .progress .showMoreText {
   padding:10px 0;
   color: #2185d0;
   cursor: pointer;
@@ -723,7 +723,7 @@ top: -220px;
 */
 
 
-.main .middle-block .project .projectContent .left .progress .bar {
+.project .projectContent .left .progress .bar {
   background-color: rgba(244,245,247, 0.8);
   height:10px;
   border-radius: 10px;
@@ -731,7 +731,7 @@ top: -220px;
   width: 350px;
 }
 
-.main .middle-block .project .projectContent .left .progress .progressBar {
+.project .projectContent .left .progress .progressBar {
   background:#2185d0;
   height:100%;
   width:78%; /* Ajouter le pourcentage atteint du montant souhaité */
@@ -740,7 +740,7 @@ top: -220px;
   transition: all linear 1s;
 }
 
-.main .middle-block .project .projectContent .left .progress .progressBar::after {
+.project .projectContent .left .progress .progressBar::after {
   content: '';
   opacity: 0;
   position: absolute;
@@ -767,7 +767,7 @@ top: -220px;
     opacity: 0;
   }
 }
-.main .middle-block .project .projectContent .right .projectImage {
+.project .projectContent .right .projectImage {
   border-radius: 12px;
   width: 250px;
   margin-left: 10px;
@@ -804,7 +804,13 @@ top: -220px;
 @media (max-width:767px) {
   .container .main .right, .container .main .left {
     display: none;
-}
+  }
+  .project .left {
+    display: flex!important;
+  }
+  .project .right {
+    display: block!important;
+  }
   .container .main {
     font-size: 1rem;
     width: 100%;
@@ -843,32 +849,32 @@ top: -220px;
   }
 
   /*** Style des blocks de projets ***/
-  .main .middle-block .project .reaction {
+  .project .reaction {
     justify-content: center;
   }
-  .main .middle-block .project .projectContent {
+  .project .projectContent {
     display: block;
   }
-  .main .middle-block .project .projectContent .right {
+  .project .projectContent .right {
     display: block;
   }
-  .main .middle-block .project .projectContent .right .projectImage {
+  .project .projectContent .right .projectImage {
     border-radius: 12px;
     width: 100%;
     max-height: 170px;
     margin-left: 0;
   }
-  .main .middle-block .project .projectContent .left.oncomputer {
+  .project .projectContent .left.oncomputer {
     display: none!important;
   }
-  .main .middle-block .project .projectContent .left.onmobile {
+  .project .projectContent .left.onmobile {
     display: block!important;
   }
-  .main .middle-block .project .projectContent .left .content {
+  .project .projectContent .left .content {
     height: 90px;
     overflow: hidden;
   }
-  .main .middle-block .project .projectInfo {
+  .project .projectInfo {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -881,10 +887,10 @@ top: -220px;
   main .middle-block {
     margin-top: 0;
   }
-  .main .middle-block .project .projectContent .left .progress .bar {
+  .project .projectContent .left .progress .bar {
     width: 100%;
   }
-  .main .middle-block .project {
+  .project {
     margin: 10px auto!important;
   }
   /******* SINGLE PROJECT *********/
@@ -2660,4 +2666,71 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 }
 .Message-close:hover {
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*** User Profil CSS ****/
+#profile-page .topElements {
+  display: flex;
+  align-items: center;
+  filter: grayscale(70%);
+  padding: 50px 100px;
+  background-color: #FFFCF7;
+  opacity: 0.92;
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+}
+
+#profile-page .topElements img{
+  margin-right: 30px;
+}
+
+#profile-page .topElements .userShortInfos {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.7;
+}
+
+#profile-page .bottomElements {
+  padding: 40px 100px;
+  background-color: var(--body-bg);
+  display: grid;
+  grid-template-columns: 30% 70%;
+  vertical-align: top;
+}
+
+#profile-page .aboutUser {
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+  background-color: #FFFCF7;
+  filter: grayscale(70%);
+  border-radius: 20px;
+  padding: 20px;
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  height: 400px;
+  position: sticky;
+  top: 100px;
+}
+#profile-page #aboutInvestor {
+  height: 200px!important;
+  position: sticky;
+  top: 100px;
+}
+
+@media(max-width:767px){
+  #profile-page .topElements {
+    padding: 20px;
+  }
+  #profile-page .bottomElements {
+    padding: 10px 0 0;
+    display: block;
+  }
+  #profile-page .aboutUser{
+    margin-right: 0;
+    position: relative;
+    top: 0;
+  }
+  #profile-page .bottomElements .userProjects h2, #profile-page .bottomElements .userProjectsLiked h2, #profile-page .bottomElements .projectsNotFound {
+    padding-left: 15px!important;
+  }
 }
