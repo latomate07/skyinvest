@@ -2603,6 +2603,11 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 .Message--green {
   background-color: #088dcd;
 }
+
+.Message--red {
+  background-color: red;
+}
+
 .Message-icon {
   display: table-cell;
   border-radius: 5px;
@@ -2725,7 +2730,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     padding: 10px 0 0;
     display: block;
   }
-  #profile-page .aboutUser{
+  #profile-page .aboutUser, #profile-page #aboutInvestor{
     margin-right: 0;
     position: relative;
     top: 0;
