@@ -19,8 +19,8 @@
     <div class="container">
         @include('partials.header')
         @yield('content')
-        @include('partials.footer')
     </div>
+    @include('partials.footer')
     {{-- Notifications blocks --}}
     @include('components.global.success')
 </body>
