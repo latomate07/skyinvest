@@ -125,7 +125,6 @@
 <script>
     // Like Functionnality
     $('.likeProject').on('click', function(){
-        $(this).toggleClass('projectIsLiked')
         $.ajax({
             url: "{{ route('client.project.like') }}",
             type: "POST",
@@ -135,10 +134,29 @@
                 'is_active': $(this).hasClass('projectIsLiked') ? true : false
             },
             success: function(data){
+                $(this).toggleClass('projectIsLiked')
                 console.log(data);
             },
             error: function(error){
-                console.log(error);
+                if(error.statusText == "Unauthorized")
+                {
+                    $('#successNotifBlock').hide()
+                    $('#errorNotifBlock').css({
+                        'transform': 'translateX(0px)',
+                        'color': 'white'
+                        })
+                        // Fill content
+                        $('#error_message_title').html('<strong>Non autorisé :</strong>');
+                        $('#error_message_content').html("<p>Vous devez vous connectez avant d'effectuer cette action.");
+
+                        // Hide block after 3 seconds
+                        setTimeout(() => {
+                            $('#errorNotifBlock').css({
+                                'transform': 'translateX(500px)'
+                            })
+                        }, 3000);
+                }
+                console.log(error.statusText);
             }
         })
     })
