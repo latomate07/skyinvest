@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="right">
-            <h5 class="viewProfil"><a class="btn" href="#">Voir le profil</a></h5>
+            <h5 class="viewProfil"><a class="btn" href="{{ route('client.show.user', $project->user->id) }}">Voir le profil</a></h5>
         </div>
     </div>
     <div class="projectContent">
