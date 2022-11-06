@@ -2712,14 +2712,32 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   display: flex;
   flex-direction: column;
   margin-right: 20px;
-  height: 400px;
+  height: 450px;
   position: sticky;
   top: 100px;
 }
 #profile-page #aboutInvestor {
-  height: 200px!important;
+  height: 250px!important;
   position: sticky;
   top: 100px;
+}
+#profile-page .enterprise_description {
+  height: 70px;
+  overflow-y: scroll;
+  background-color: rgba(244,245,247, 0.8);
+  border-radius: 10px;
+}
+
+#profile-page #userStatistic ul .title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#profile-page #userStatistic {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
 }
 
 @media(max-width:767px){
@@ -2734,6 +2752,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     margin-right: 0;
     position: relative;
     top: 0;
+    border-radius: 0;
   }
   #profile-page .bottomElements .userProjects h2, #profile-page .bottomElements .userProjectsLiked h2, #profile-page .bottomElements .projectsNotFound {
     padding-left: 15px!important;
