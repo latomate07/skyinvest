@@ -14,7 +14,7 @@ There are some modules added on this platform :
 - View/Electronic Sign a Investment Contract Sytem.
 
 SkyInvest is on development by me, it will be distributed very soon.
-Temporary Version is here [Click On Me](http://skyinvest.epizy.com)
+Temporary Version is here [Click On Me](https://skyinvest.herokuapp.com)
 
 ## Install Project Guide
 
