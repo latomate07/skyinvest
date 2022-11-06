@@ -46,8 +46,6 @@
                     </a>
                 @endguest
             </div>
-
-            
         </div>
     </div>
 
@@ -78,7 +76,18 @@
                 </span>
                 <hr>
                 <h3>Valeurs</h3>
-                <p>{{ $data->enterprise_description }}</p>
+                <p class="enterprise_description">{{ $data->enterprise_description }}</p>
+                <hr>
+                <div id="userStatistic">
+                    <ul>
+                        <li class="title">Nb. de projets</li>
+                        <li>{{ count($data->projects) }}</li>
+                    </ul>
+                    <ul>
+                        <li class="title">Abonnés</li>
+                        <li>250</li>
+                    </ul>
+                </div>
             </div>
             <div class="userProjects">
                 <h2 style="margin-top: 20px">Projet(s) de {{ $data->enterprise_name }}</h2>
@@ -105,6 +114,17 @@
                     <i class="fa fa-gavel" style="color: #2f2f2f"></i>
                     {{ "Statut Juridique : " . "Non défini" }}
                 </span>
+                <hr>
+                <div id="userStatistic">
+                    <ul>
+                        <li class="title">Nb. de projets soutenu</li>
+                        <li>{{ count($projects_liked) }}</li>
+                    </ul>
+                    <ul>
+                        <li class="title">Suivi(e)s</li>
+                        <li>250</li>
+                    </ul>
+                </div>
             </div>
             <div class="userProjectsLiked">
                 <h2 style="margin-top: 20px">Projet(s) soutenu par {{ $data->investor_username }}</h2>
