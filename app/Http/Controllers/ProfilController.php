@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Favorites;
 use App\Models\User;
 use App\Models\Project;
 use Illuminate\Http\Request;
@@ -26,5 +27,46 @@ class ProfilController extends Controller
             'data' => $data,
             'projects_liked' => $projects_liked
         ]);
+    }
+
+    /**
+     * Add function to register investor entreprise favorites
+     * Need Investor ID
+     */
+    public function saveEntrepriseToThisUser(Request $request)
+    {
+        $currentUser = User::find(auth()->user()->id);
+        $userConcerned = User::find($request->userConcernedId);
+        $data = [];
+
+        if($request->has('followThisEnterprise') && $request->followThisEnterprise == "true"){
+                $updateOrCreateFavorites = Favorites::updateOrCreate([
+                    "favoritable_id" => $currentUser->id,
+                    "favoritable_type" => User::class,
+                    'target_id' => $userConcerned->id
+                ]);
+
+                $data = [
+                    "followBy" => $currentUser,
+                    "userConcerned" => $userConcerned,
+                    "message" => "Vous êtes désormais abonné à $userConcerned->enterprise_name"
+                ];
+
+                return response()->json($data);
+        }
+        else {
+            // Remove record
+            $removeRecord = Favorites::where([
+                "favoritable_id" => $currentUser->id,
+                "favoritable_type" => User::class,
+                "target_id" => $userConcerned->id
+            ])->delete();
+
+            $data = [
+                "message" => "Vous ne suivez plus $userConcerned->enterprise_name"
+            ];
+
+            return response()->json($data);
+        }
     }
 }
