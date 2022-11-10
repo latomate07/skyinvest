@@ -58,6 +58,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/project/likethisone', [ProjectController::class, 'projectLiked'])->name('client.project.like');
     //-- Get Projects User needs
     Route::get('/project/wished', [HomeController::class, 'switchProjects'])->name('client.project.wished');
+
+    //-- Store Investor Entreprise Liked
+    Route::post('profil/userLikeThisEntreprise', [ProfilController::class, 'saveEntrepriseToThisUser'])->name('userLikeThisEntreprise');
 });
 //-- Show project
 Route::get('/projet/{id}', [ProjectController::class, 'show'])->name('client.project.show');
