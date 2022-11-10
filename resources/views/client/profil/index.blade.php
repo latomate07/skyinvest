@@ -22,7 +22,7 @@
                         </a>
                     @else
                         @if ($data->role == "Entreprise")
-                        <a href="" class="btn" style="text-decoration:none">
+                        <a class="btn" style="text-decoration:none" id="followThisEnterprise">
                             <i class="fa fa-plus"></i>
                             Suivre
                         </a>
@@ -35,7 +35,7 @@
                 @endauth
                 @guest
                     @if ($data->role == "Entreprise")
-                    <a href="" class="btn" style="text-decoration:none">
+                    <a class="btn" style="text-decoration:none" id="followThisEnterprise">
                         <i class="fa fa-plus"></i>
                         Suivre
                     </a>
@@ -177,6 +177,85 @@
                         }, 3000);
                 }
                 console.log(error.statusText);
+            }
+        })
+    })
+
+    // Follow User Functionnality
+    $('#followThisEnterprise').on('click', function($query){
+        // Chnage icon dynamically
+        const icon = $(this).find('i');
+        // Store actual btn to get it after
+        const followBtn = $(this);
+
+        icon.toggleClass('fa-plus');
+        icon.toggleClass('fa-check');
+        // Change Text
+        if(icon.hasClass('fa-check')) {
+            $(this).css({
+                'background-color' : '#088dcd',
+                'border-color' : '#088dcd',
+                'filter' : 'grayscale(0%)'
+            });
+            $(this).html('<i class="fa fa-check"></i>  Suivi');
+        }
+        else {
+            $(this).css({
+                'background-color' : 'rgba(8,141,205,.6)',
+                'border-color' : '#088dcd'
+            });
+            // Add plus icon
+            $(this).html('<i class="fa fa-plus"></i>  Suivre');
+        }
+
+        $.ajax({
+            url : "{{ route('userLikeThisEntreprise') }}",
+            type : "POST",
+            data : {
+                "_token" : "{{ csrf_token() }}",
+                "followThisEnterprise" : icon.hasClass('fa-check') ? true : false,
+                "userConcernedId" : "{{ $data->id }}"
+            },
+            success: function(data) {
+                if(data.message !== "errorIsDetected") {
+                    $('#successNotifBlock').css({
+                    'transform': 'translateX(0px)',
+                    'color': 'white'
+                    })
+                    // Fill content
+                    $('#notif_message_title').html('<strong>Abonnement :</strong>');
+                    $('#notif_message_content').html(data.message);
+
+                    // Hide block after 3 seconds
+                    setTimeout(() => {
+                        $('#successNotifBlock').css({
+                            'transform': 'translateX(470px)'
+                        })
+                    }, 3000);
+                }
+
+                console.log(data);
+            },
+            error: function(error) {
+                if(error.statusText == "Unauthorized")
+                {
+                    $('#successNotifBlock').hide()
+                    $('#errorNotifBlock').css({
+                        'transform': 'translateX(0px)',
+                        'color': 'white'
+                        })
+                        // Fill content
+                        $('#error_message_title').html('<strong>Non autorisé :</strong>');
+                        $('#error_message_content').html("<p>Vous devez vous connectez avant d'effectuer cette action.");
+
+                        // Hide block after 3 seconds
+                        setTimeout(() => {
+                            $('#errorNotifBlock').css({
+                                'transform': 'translateX(500px)'
+                            })
+                        }, 3000);
+                }
+                console.log(error);
             }
         })
     })
