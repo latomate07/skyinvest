@@ -99,4 +99,12 @@ class User extends Authenticatable
     {
         return $this->fillable;
     }
+
+    /**
+     * Morph To favorites Entreprises
+     */
+    public function enterprisesLiked()
+    {
+        return $this->morphOne(Favorites::class, 'favoritable');
+    }
 }
