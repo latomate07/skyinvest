@@ -21,7 +21,11 @@
                             src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                             width="10px" height="0">
                         <span class="authorName">
-                            <strong>{{ $project->user->enterprise_name }}</strong>
+                            <strong>
+                                {{ $project->user->enterprise_name }} 
+                                - 
+                                <a href="{{ route('client.show.user', $project->user->id) }}" style="color: #088dcd; text-decoration: none;">voir profil</a>
+                            </strong>
                         </span>
                     </div>
                     <p class="authorDescription">
