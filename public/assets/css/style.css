@@ -44,6 +44,8 @@ hr {
 
 a {
   cursor: pointer;
+  color: #088dcd;
+  text-decoration: none;
 }
 
 .btn {
@@ -1086,7 +1088,7 @@ top: -220px;
   margin: 8% auto 0;
   position: relative;
   z-index: 1;
-  border-top: 5px solid #f5ba1a;
+  border-top: 5px solid #088dcd;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
@@ -1173,11 +1175,11 @@ top: -220px;
   -webkit-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
   -moz-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
   box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
-  border: 1px solid #f5ba1a;
+  border: 1px solid #088dcd;
   background: #fafafa;
 }
 .form_wrapper input[type=submit] {
-  background: #f5ba1a;
+  background: #088dcd;
   height: 35px;
   line-height: 35px;
   width: 100%;
@@ -1193,10 +1195,10 @@ top: -220px;
   transition: all 0.3s ease-in-out;
 }
 .form_wrapper input[type=submit]:hover {
-  background: #e1a70a;
+  background: #088dcd;
 }
 .form_wrapper input[type=submit]:focus {
-  background: #e1a70a;
+  background: #088dcd;
 }
 .form_wrapper input[type=checkbox], .form_wrapper input[type=radio] {
   border: 0;
@@ -1338,7 +1340,7 @@ top: -220px;
   color: #f5ba1a;
 }
 .credit a {
-  color: #e1a70a;
+  color: #088dcd;
 }
 
 @-webkit-keyframes check {
