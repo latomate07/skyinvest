@@ -61,6 +61,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     //-- Store Investor Entreprise Liked
     Route::post('profil/userLikeThisEntreprise', [ProfilController::class, 'saveEntrepriseToThisUser'])->name('userLikeThisEntreprise');
+    //-- Store user in newsletter subscriber
+    Route::post('/userWish/newsletter', [HomeController::class, 'isWishNewsletter'])->name('user.wishNewsletter');
 });
 //-- Show project
 Route::get('/projet/{id}', [ProjectController::class, 'show'])->name('client.project.show');
