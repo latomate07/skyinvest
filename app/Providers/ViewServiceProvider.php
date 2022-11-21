@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Medias;
+use App\Models\User;
 use Illuminate\Support\Facades\View;
 
 class ViewServiceProvider extends ServiceProvider
@@ -29,7 +30,7 @@ class ViewServiceProvider extends ServiceProvider
         View::composer('*', function($view){
             if(auth()->check())
             {
-                $view->with('medias', Medias::where('user_id', auth()->user()->id)->first());
+                $view->with('medias', Medias::where('mediable_type', User::class)->where('mediable_id', auth()->user()->id)->first());
             }
             else {
                 $view->with('medias', null);
