@@ -195,5 +195,80 @@
             })
         }
     })
+
+    // Newsletter functionnality 
+    $('#newsletter').on('submit', function(event) {
+        event.preventDefault();
+        const userMail = $('#newsletterUserMail').val();
+        $.ajax({
+            url: "{{ route('user.wishNewsletter') }}",
+            type: "POST",
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'userMail': userMail
+            },
+            success: function(data) {
+                if(data.warning !== "")
+                {
+                    $('#successNotifBlock').hide()
+                    $('#errorNotifBlock').css({
+                        'transform': 'translateX(0px)',
+                        'color': 'white'
+                        })
+                        // Fill content
+                        $('#error_message_title').html('<strong>Champs Requis :</strong>');
+                        $('#error_message_content').html(data.warning);
+
+                        // Hide block after 3 seconds
+                        setTimeout(() => {
+                            $('#errorNotifBlock').css({
+                                'transform': 'translateX(500px)'
+                            })
+                        }, 3000);
+                }
+                if(!data.warning)
+                {
+                    $('#successNotifBlock').show()
+                    $('#errorNotifBlock').hide()
+                        
+                    $('#successNotifBlock').css({
+                        'transform': 'translateX(0px)',
+                        'color': 'white'
+                    })
+                    // Fill content
+                    $('#notif_message_title').html('<strong>Notification :</strong>');
+                    $('#notif_message_content').html(data.message);
+                    // Hide block after 3 seconds
+                    setTimeout(() => {
+                        $('#successNotifBlock').css({
+                            'transform': 'translateX(420px)'
+                        })
+                    }, 3000);
+                }
+                console.log(data);
+            },
+            error: function(error){
+                if(error.statusText == "Unauthorized")
+                {
+                    $('#successNotifBlock').hide()
+                    $('#errorNotifBlock').css({
+                        'transform': 'translateX(0px)',
+                        'color': 'white'
+                        })
+                        // Fill content
+                        $('#error_message_title').html('<strong>Non autorisé :</strong>');
+                        $('#error_message_content').html("<p>Vous devez vous connectez avant d'effectuer cette action.");
+
+                        // Hide block after 3 seconds
+                        setTimeout(() => {
+                            $('#errorNotifBlock').css({
+                                'transform': 'translateX(500px)'
+                            })
+                        }, 3000);
+                }
+                console.log(error);
+            }
+        })
+    })
 </script>
 @endsection

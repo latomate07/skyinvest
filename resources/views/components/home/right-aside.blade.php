@@ -19,8 +19,9 @@
     <div class="card calltoaction">
         <h2 class="subtitle">Restez informé !</h2>
         <p class="content">Recevez les nouveaux projets publiés directement dans votre boître mail : </p>
-        <form class="newsletter" method="post">
-            <input class="searchInput" placeholder="Entrez votre mail ici">
+        <form class="newsletter" id="newsletter">
+            @csrf
+            <input class="searchInput" placeholder="Entrez votre mail ici" id="newsletterUserMail">
             <input type="submit" value="Go" class="searchBtn">
         <form>
     </div>
