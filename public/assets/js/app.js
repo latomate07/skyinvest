@@ -116,3 +116,24 @@ menuCloseBtn.onclick = function () {
     menuBlock.style.opacity = "0"
     menuBlock.style.left = "-315px"
 }
+
+// Image Slider JS
+const slidesContainer = document.getElementById("slides-container");
+const slide = document.querySelector(".slide");
+const prevButton = document.getElementById("slide-arrow-prev");
+const nextButton = document.getElementById("slide-arrow-next");
+
+nextButton.addEventListener("click", () => {
+  const slideWidth = slide.clientWidth;
+  slidesContainer.scrollLeft += (slideWidth+400);
+});
+
+prevButton.addEventListener("click", () => {
+  const slideWidth = slide.clientWidth;
+  slidesContainer.scrollLeft -= (slideWidth+400);
+});
+
+// Onclick show principal image
+$('.slide').on('click', function() {
+    $('#illustration').attr('src', $(this).attr('src'))
+})
