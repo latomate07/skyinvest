@@ -50,4 +50,36 @@ class HomeController extends Controller
 
         return response()->json(Project::all(), 200);
     }
+
+    /**
+     * Store user wish newsletter
+     */
+    public function isWishNewsletter(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+        if(!is_null($request->userMail))
+        {
+            if($user->email !== $request->userMail)
+            {
+                $user->email = $request->userMail;
+                $user->wishNewsletter = "on";
+                $user->save();
+            }
+            $user->wishNewsletter = "on";
+            $user->save();
+
+            $data = [
+                'user' => $user,
+                'message' => 'Votre demande a bien été prise en compte.'
+            ];
+        }
+        else {
+            $data = [
+                'user' => $user,
+                'warning' => 'Vous devez indiqué votre mail.'
+            ];
+        }
+
+        return response()->json($data);
+    }
 }
