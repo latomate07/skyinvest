@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('medias', function (Blueprint $table) {
             $table->id();
             $table->string('url');
-            $table->foreignId('user_id')->constrained();
             $table->morphs('mediable');
             $table->timestamps();
         });
