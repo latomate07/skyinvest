@@ -208,7 +208,7 @@ document.getElementById('changeImg').addEventListener('submit', function(e) {
 
         if(inArray(extension, allowedExtension)) {
             console.log("Parfait mon gâté !")
-            xhr.open("POST", "/ajax/dashboard", true) // Envoyer le fichier pour le traiter
+            xhr.open("POST", "dashboard/ajax/dashboard", true) // Envoyer le fichier pour le traiter
             xhr.responseType = "json"
             xhr.send(data)   
 
