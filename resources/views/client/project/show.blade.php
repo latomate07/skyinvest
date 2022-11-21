@@ -6,10 +6,34 @@
             <div class="left">
                 <!-- Illustration du projet -->
                 @forelse ($project->medias as $image)
-                    <img class="illustration" src="{{ asset('assets/client/images') . "/" . $image->url }}">
+                    <img class="illustration" src="{{ asset('assets/client/images') . "/" . $image->url }}" id="illustration">
                 @empty
-                    <img class="illustration" src="{{ asset('assets/images/defaultProjectImage.jpeg') }}" alt="">
+                    <img class="illustration" src="{{ asset('assets/images/defaultProjectImage.jpeg') }}" id="illustration" alt="">
                 @endforelse
+                <div class="slider-wrapper">
+                    <button class="slide-arrow" id="slide-arrow-prev">
+                      &#8249;
+                    </button>
+                    <button class="slide-arrow" id="slide-arrow-next">
+                      &#8250;
+                    </button>
+                    <div class="slides-container" id="slides-container">
+                      <img class="img1 slide" src="//picsum.photos/300/200?1">
+                      <img class="img1 slide" src="//picsum.photos/300/200?2">
+                      <img class="img1 slide" src="//picsum.photos/300/200?3">
+                      <img class="img1 slide" src="//picsum.photos/300/200?4">
+                      <img class="img1 slide" src="//picsum.photos/300/200?5">
+                      <img class="img1 slide" src="//picsum.photos/300/200?6">
+                      <img class="img1 slide" src="//picsum.photos/300/200?7">
+                      <img class="img1 slide" src="//picsum.photos/300/200?8">
+                      <img class="img1 slide" src="//picsum.photos/300/200?9">
+                      <img class="img1 slide" src="//picsum.photos/300/200?10">
+                      <img class="img1 slide" src="//picsum.photos/300/200?11">
+                      <img class="img1 slide" src="//picsum.photos/300/200?12">
+                      <img class="img1 slide" src="//picsum.photos/300/200?13">
+                      <img class="img1 slide" src="//picsum.photos/300/200?14">
+                    </div>
+                </div>
             </div>
             <div class="right">
                 <div class="top-side">
