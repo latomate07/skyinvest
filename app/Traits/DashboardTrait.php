@@ -1,6 +1,7 @@
 <?php 
 namespace App\Traits;
 
+use App\Http\Requests\StoreLogoRequest;
 use App\Models\User;
 use App\Models\Medias;
 use Illuminate\Http\Request;
@@ -10,16 +11,18 @@ trait DashboardTrait
     /**
      * Ajax controller
      */
-    public function liveChange(Request $request)
+    public function liveChange(StoreLogoRequest $request)
     {
-        // dd($request->all());
-        $media = new Medias();
-
+        $user = User::find(auth()->user()->id);
         if($request->has('user_logo'))
         {
             $path = $request->user_logo->store('/', ['disk' => 'user_logo_path']);
-            $media->url = $path;
-            $media->save();
+            $user->medias()->updateOrCreate([
+                'mediable_id' => $user->id,
+                'mediable_type' => User::class
+            ], [
+                'url' => $path
+            ]);
         }
         $data = [
             'user' => auth()->user(),
