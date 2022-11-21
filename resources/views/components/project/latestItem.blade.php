@@ -1,8 +1,8 @@
 <div class="project" id="latestProjects">
     <div class="topContent">
         <div class="left">
-            @if(!is_null($project->user->medias))
-            <a href="#" class="userLink"><img src="{{ asset('assets/client/logos/' . $project->user->medias->url) }}" alt="photo de profil"
+            @if(!is_null($latest_project->user->medias))
+            <a href="#" class="userLink"><img src="{{ asset('assets/client/logos/' . $latest_project->user->medias->url) }}" alt="photo de profil"
                     width="50px" height="50px" class="userLogo"></a>
             @else
             <a href="#" class="userLink"><img src="{{ asset('assets/client/logos/default.png') }}" alt="photo de profil"
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="right">
-            <h5 class="viewProfil"><a class="btn" href="{{ route('client.show.user', $project->user->id) }}">Voir le profil</a></h5>
+            <h5 class="viewProfil"><a class="btn" href="{{ route('client.show.user', $latest_project->user->id) }}">Voir le profil</a></h5>
         </div>
     </div>
     <div class="projectContent">

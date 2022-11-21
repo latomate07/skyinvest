@@ -1,8 +1,8 @@
 <div class="project" id="projectsLiked">
     <div class="topContent">
         <div class="left">
-            @if(!is_null($project->user->medias))
-            <a href="#" class="userLink"><img src="{{ asset('assets/client/logos/' . $project->user->medias->url) }}" alt="photo de profil"
+            @if(!is_null($project_liked->user->medias))
+            <a href="#" class="userLink"><img src="{{ asset('assets/client/logos/' . $project_liked->user->medias->url) }}" alt="photo de profil"
                     width="50px" height="50px" class="userLogo"></a>
             @else
             <a href="#" class="userLink"><img src="{{ asset('assets/client/logos/default.png') }}" alt="photo de profil"
