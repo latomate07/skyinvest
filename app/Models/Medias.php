@@ -9,7 +9,7 @@ class Medias extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['url', 'user_id', 'mediable_id', 'mediable_type'];
+    protected $fillable = ['url', 'mediable_id', 'mediable_type'];
 
     public function user()
     {
@@ -19,13 +19,5 @@ class Medias extends Model
     public function mediable()
     {
         return $this->morphTo();
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-        static::creating(function($media) {
-            $media->user_id = auth()->user()->id;
-        });
     }
 }
