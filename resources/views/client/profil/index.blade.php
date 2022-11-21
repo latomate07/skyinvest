@@ -3,7 +3,13 @@
 
 <div id="profile-page">
     <div class="topElements">
-        <img src="{{ asset('assets/client/logos/default.png') }}" alt="photodeprofilde{{ str_replace(' ', '', strtolower($data->name)) }}" class="userLogo" width="100px" height="100px">
+        @if(!is_null($data->medias))
+            <a href="#" class="userLink"><img src="{{ asset('assets/client/logos/' . $data->medias->url) }}"  alt="photodeprofilde{{ str_replace(' ', '', strtolower($data->name)) }}"
+            width="100px" height="100px" class="userLogo"></a>
+        @else
+        <a href="#" class="userLink"><img src="{{ asset('assets/client/logos/default.png') }}"  alt="photodeprofilde{{ str_replace(' ', '', strtolower($data->name)) }}"
+            width="100px" height="100px" class="userLogo"></a>
+        @endif
         <div class="userShortInfos">
             @if ($data->role == "Entreprise")
                 <h3 class="userName">{{ $data->enterprise_name }}</h3>

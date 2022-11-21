@@ -17,9 +17,13 @@
                         {{ $project->name }}
                     </h3>
                     <div class="author">
-                        <img class="avatar"
-                            src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                            width="10px" height="0">
+                        @if(!is_null($project->user->medias))
+                            <a href="{{ route('client.show.user', $project->user->id) }}" class="userLink"><img src="{{ asset('assets/client/logos/' . $project->user->medias->url) }}"  alt="photodeprofilde{{ str_replace(' ', '', strtolower($project->user->name)) }}"
+                            width="10px" height="0" class="avatar"></a>
+                        @else
+                            <a href="{{ route('client.show.user', $project->user->id) }}" class="userLink"><img src="{{ asset('assets/client/logos/default.png') }}"  alt="photodeprofilde{{ str_replace(' ', '', strtolower($project->user->name)) }}"
+                            width="100px" height="0" class="avatar"></a>
+                        @endif
                         <span class="authorName">
                             <strong>
                                 {{ $project->user->enterprise_name }} 
