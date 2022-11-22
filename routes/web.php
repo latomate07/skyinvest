@@ -63,6 +63,13 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('profil/userLikeThisEntreprise', [ProfilController::class, 'saveEntrepriseToThisUser'])->name('userLikeThisEntreprise');
     //-- Store user in newsletter subscriber
     Route::post('/userWish/newsletter', [HomeController::class, 'isWishNewsletter'])->name('user.wishNewsletter');
+
+    /**************** LIVE CHAT BETWEEN USERS ROUTE *****************/
+    Route::group(['prefix' => 'conversation'], function() {
+        Route::get('/', function() {
+            return view('client.livechat.index');
+        });
+    });
 });
 //-- Show project
 Route::get('/projet/{id}', [ProjectController::class, 'show'])->name('client.project.show');
