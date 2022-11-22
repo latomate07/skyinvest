@@ -18,7 +18,8 @@ class DashboardController extends Controller
 
         return view('client.dashboard.index', [
             'user' => $user,
-            'isReadyToInvest' => self::isReadyToInvest($user_id)
+            'isReadyToInvest' => User::isReadyToInvest($user_id),
+            'isReadyToPublish' => User::isReadyToPublish($user_id)
         ]);
     }
 
