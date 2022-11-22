@@ -38,11 +38,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['prefix' => 'dashboard'], function() {
         Route::get('/', [DashboardController::class, 'showDashboardPage'])->name('client.dashboard');
         Route::post('/ajax/dashboard', [DashboardController::class, 'liveChange'])->name('client.dashboard.ajax');
-        /** Store Investisor Informations **/
-        Route::post('/userinformations/stepOne', [DashboardController::class, 'investorStoreInfosStepOne'])->name('investor.storeUserInfos.stepOne');
-        Route::post('/userinformations/stepTwo', [DashboardController::class, 'investorStoreInfosStepTwo'])->name('investor.storeUserInfos.stepTwo');
-        Route::post('/userinformations/stepThree', [DashboardController::class, 'investorStoreInfosStepThree'])->name('investor.storeUserInfos.stepThree');
-        Route::post('/userinformations/stepFourth', [DashboardController::class, 'investorStoreInfosStepFourth'])->name('investor.storeUserInfos.stepFourth');
+        /** Update User Informations **/
+        Route::post('/update/user/stepOne', [DashboardController::class, 'updateInfosStepOne'])->name('update.userInfos.stepOne');
+        Route::post('/update/user/stepTwo', [DashboardController::class, 'updateInfosStepTwo'])->name('update.userInfos.stepTwo');
+        Route::post('/update/user/stepThree', [DashboardController::class, 'updateInfosStepThree'])->name('update.userInfos.stepThree');
+        Route::post('/update/user/stepFourth', [DashboardController::class, 'updateInfosStepFourth'])->name('update.userInfos.stepFourth');
     });
 
     /**************** PROJECT ROUTE *****************/

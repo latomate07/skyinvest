@@ -331,7 +331,7 @@
             'userFullName': $('input[name="userFullName"]').val()
         }
         $.ajax({
-            url: " {{ route('investor.storeUserInfos.stepOne') }} ",
+            url: " {{ route('update.userInfos.stepOne') }} ",
             type: "POST",
             data: {
                 '_token': '{{ csrf_token() }}',
@@ -367,7 +367,7 @@
             'userFamilyAdress': $('input[name="userFamilyAdress"]').val(),
             'userFamilyTel': $('input[name="userFamilyTel"]').val()    }
         $.ajax({
-            url: " {{ route('investor.storeUserInfos.stepTwo') }} ",
+            url: " {{ route('update.userInfos.stepTwo') }} ",
             type: "POST",
             data: {
                 '_token': '{{ csrf_token() }}',
@@ -403,7 +403,7 @@
             'bankIban': $('input[name="bankIban"]').val()
         }
         $.ajax({
-            url: " {{ route('investor.storeUserInfos.stepThree') }} ",
+            url: " {{ route('update.userInfos.stepThree') }} ",
             type: "POST",
             data: {
                 '_token': '{{ csrf_token() }}',
@@ -437,7 +437,7 @@
             'userRevenues': $('input[name="userRevenues"]').val()   
         }
         $.ajax({
-            url: " {{ route('investor.storeUserInfos.stepFourth') }} ",
+            url: " {{ route('update.userInfos.stepFourth') }} ",
             type: "POST",
             data: {
                 '_token': '{{ csrf_token() }}',
