@@ -55,7 +55,7 @@ class Conversation extends Model
      */
     public function receiver()
     {
-        return $this->hasOne(User::class, 'to_id');
+        return $this->hasOne(User::class, 'id');
     }
 
     /**
@@ -72,5 +72,15 @@ class Conversation extends Model
     public function scopeGetAllConversations($query)
     {
         return $query->where('from_id', auth()->user()->id);
+    }
+
+    /**
+     * scope to get request conversation
+     * 
+     * @return object
+     */
+    public function scopeGetConversation($query, $uid)
+    {
+        return $query->where('uid', $uid)->first();
     }
 }
