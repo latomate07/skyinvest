@@ -4,15 +4,15 @@
     </div>
     @forelse ($conversations as $conversation)
         <div class="msg online">
-            @if($medias !== null)
-                <img class="msg-profile" src="{{ asset('assets/client/logos/' . $medias->url) }}" alt="" />
+            @if(!is_null($conversation->receiver->medias))
+                <img class="msg-profile" src="{{ asset('assets/client/logos/' . $conversation->receiver->medias->url) }}" alt="logo">
             @else
-                <img class="msg-profile" src="{{ asset('assets/client/logos/default.png') }}" alt="" />
+                <img class="msg-profile" src="{{ asset('assets/client/logos/default.png') }}" alt="logo">
             @endif
             <a class="msg-detail" href="{{ route('conversations.show', $conversation->uid) }}">
-                <div class="msg-username">{{ $conversation->receiver->name }}</div>
+                <div class="msg-username">{{ ($conversation->receiver->role == "Investisseur") ? $conversation->receiver->investor_username : $conversation->receiver->enterprise_name }}</div>
                 <div class="msg-content">
-                    <span class="msg-message">What time was our meet</span>
+                    <span class="msg-message">Ceci est un test blablablba</span>
                     <span class="msg-date">{{ \Carbon\Carbon::parse($conversation->updated_at)->diffForHumans() }}</span>
                 </div>
             </a>

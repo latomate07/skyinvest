@@ -1,11 +1,11 @@
 <div class="detail-area">
     <div class="detail-area-header">
-        @if($medias !== null)
-            <img class="msg-profile group" src="{{ asset('assets/client/logos/' . $medias->url) }}" alt="" />
+       @if(!is_null($conversation->receiver->medias))
+            <img class="msg-profile group" src="{{ asset('assets/client/logos/' . $conversation->receiver->medias->url) }}" alt="logo">
         @else
-            <img class="msg-profile group" src="{{ asset('assets/client/logos/default.png') }}" alt="" />
+            <img class="msg-profile group" src="{{ asset('assets/client/logos/default.png') }}" alt="logo">
         @endif
-        <div class="detail-title">{{ $conversation->receiver->name }}</div>
+        <div class="detail-title">{{ ($conversation->receiver->role == "Investisseur") ? $conversation->receiver->investor_username : $conversation->receiver->enterprise_name }}</div>
         <div class="detail-subtitle">Rejoint {{ \Carbon\Carbon::parse($conversation->receiver->created_at)->diffForHumans() }}</div>
         <div class="detail-buttons">
             <button class="detail-button">
