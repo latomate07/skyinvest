@@ -70,6 +70,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/', [ConversationController::class, 'index'])->name('conversations.home');
         // Get single conversation page
         Route::get('/{uid}', [ConversationController::class, 'show'])->name('conversations.show');
+        // Create New conversation
+        Route::get('/new/{userID}', [ConversationController::class, 'create'])->name('conversations.create');
     });
 });
 //-- Show project
