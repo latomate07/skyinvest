@@ -14,5 +14,5 @@ toggleButton.addEventListener("click", () => {
  document.body.classList.toggle("dark-mode");
 });
 
-var chat = document.getElementById('chat');
+var chat = document.querySelector('.chat-area');
    chat.scrollTop = chat.scrollHeight - chat.clientHeight;
