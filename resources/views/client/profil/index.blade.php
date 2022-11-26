@@ -33,7 +33,7 @@
                             Suivre
                         </a>
                         @endif
-                        <a href="" class="btn" style="text-decoration:none">
+                        <a href="{{ route('conversations.create', $data->id) }}" class="btn" style="text-decoration:none">
                             <i class="fa fa-envelope"></i>
                             Contacter
                         </a>
@@ -41,12 +41,12 @@
                 @endauth
                 @guest
                     @if ($data->role == "Entreprise")
-                    <a class="btn" style="text-decoration:none" id="followThisEnterprise">
+                    <a href="{{ route('conversations.create', $data->id) }}" class="btn" style="text-decoration:none" id="followThisEnterprise">
                         <i class="fa fa-plus"></i>
                         Suivre
                     </a>
                     @endif
-                    <a href="" class="btn" style="text-decoration:none">
+                    <a href="{{ route('conversations.create', $data->id) }}" class="btn" style="text-decoration:none">
                         <i class="fa fa-envelope"></i>
                         Contacter
                     </a>
