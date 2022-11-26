@@ -11,6 +11,9 @@
             <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
         </svg>
     </div>
-    <img class="user-profile" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3364143/download+%281%29.png" alt=""
-        class="account-profile" alt="">
+    @if($medias !== null)
+        <img class="user-profile account-profile" src="{{ asset('assets/client/logos/' . $medias->url) }}" alt="" />
+    @else
+        <img class="user-profile account-profile" src="{{ asset('assets/client/logos/default.png') }}" alt="" />
+    @endif
 </div>
