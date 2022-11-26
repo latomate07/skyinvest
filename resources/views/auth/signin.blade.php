@@ -32,7 +32,7 @@
                         </div>
                         <div class="col_half" id="investor_name_div">
                             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                                <input type="text" name="investor_name_div" placeholder="Nom d'utilisateur"/>
+                                <input type="text" name="investor_username" placeholder="Nom d'utilisateur"/>
                             </div>
                         </div>
                     </div>
