@@ -30,7 +30,7 @@ class ViewServiceProvider extends ServiceProvider
         View::composer('*', function($view){
             if(auth()->check())
             {
-                $view->with('medias', Medias::where('mediable_type', User::class)->where('mediable_id', auth()->user()->id)->first());
+                $view->with('medias', Medias::with('user', 'mediable')->where('mediable_type', User::class)->where('mediable_id', auth()->user()->id)->first());
             }
             else {
                 $view->with('medias', null);
