@@ -28,6 +28,9 @@ class StoreUserRequest extends FormRequest
             'password' => 'required',
             'name' => 'required',
             'role' => 'required',
+            'enterprise_name' => 'required_if:role,Entreprise',
+            'investor_username' => 'required_if:role,Investisseur',
+            'enterprise_description' => 'required_if:role,Entreprise',
             'country' => 'required',
             'isAgreedWithTerms' => 'required'
         ];
