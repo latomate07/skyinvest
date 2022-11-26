@@ -1,15 +1,12 @@
 <div class="detail-area">
     <div class="detail-area-header">
-        <div class="msg-profile group">
-            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
-                stroke-linejoin="round" class="css-i6dzq1">
-                <path d="M12 2l10 6.5v7L12 22 2 15.5v-7L12 2zM12 22v-6.5" />
-                <path d="M22 8.5l-10 7-10-7" />
-                <path d="M2 15.5l10-7 10 7M12 2v6.5" />
-            </svg>
-        </div>
-        <div class="detail-title">Barry</div>
-        <div class="detail-subtitle">Rejoint depuis 1 Mai 2020</div>
+        @if($medias !== null)
+            <img class="msg-profile group" src="{{ asset('assets/client/logos/' . $medias->url) }}" alt="" />
+        @else
+            <img class="msg-profile group" src="{{ asset('assets/client/logos/default.png') }}" alt="" />
+        @endif
+        <div class="detail-title">{{ $conversation->receiver->name }}</div>
+        <div class="detail-subtitle">Rejoint {{ \Carbon\Carbon::parse($conversation->receiver->created_at)->diffForHumans() }}</div>
         <div class="detail-buttons">
             <button class="detail-button">
                 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor"
