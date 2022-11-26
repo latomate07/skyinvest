@@ -1,6 +1,12 @@
+@if (!isset($conversation))
+    <div class="conversationNotFound" style="margin: 0 auto">
+        <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_maxj5quq.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+        <h3 style="text-align: center">Votre conversation s'affichera ici.</h3>    
+    </div>
+@else
 <div class="chat-area">
     <div class="chat-area-header">
-        <div class="chat-area-title">Conversation avec Barry</div>
+        <div class="chat-area-title">Conversation avec {{ $conversation->receiver->name }}</div>
     </div>
     <div class="chat-area-main">
         <div class="chat-msg">
@@ -132,3 +138,4 @@
         </svg>
     </div>
 </div>
+@endif
