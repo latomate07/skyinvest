@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\Client\ProjectController;
+use App\Http\Controllers\Conversations\ConversationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
@@ -66,9 +67,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     /**************** LIVE CHAT BETWEEN USERS ROUTE *****************/
     Route::group(['prefix' => 'conversation'], function() {
-        Route::get('/', function() {
-            return view('client.livechat.index');
-        });
+        Route::get('/', [ConversationController::class, 'index'])->name('conversations.home');
+        // Get single conversation page
+        Route::get('/{uid}', [ConversationController::class, 'show'])->name('conversations.show');
     });
 });
 //-- Show project
