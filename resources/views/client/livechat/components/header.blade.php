@@ -1,5 +1,5 @@
 <div class="logo">
-    <h3>SkyInvest</h3>
+    <h3><a href="{{ route('home') }}">SkyInvest</a></h3>
 </div>
 <div class="search-bar">
     <input type="text" placeholder="Rechercher..." />
