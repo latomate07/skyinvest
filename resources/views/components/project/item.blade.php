@@ -86,7 +86,7 @@
                         style="margin-right:5px"></i>Voir plus</a></p>
         </div>
         <div class="discuss">
-            <p><a class="reactionBtn" href="#"><i class="fa fa-comments-dollar"
+            <p><a class="reactionBtn" href="{{ route('conversations.create', $project->user->id) }}"><i class="fa fa-comments-dollar"
                         style="margin-right:5px;"></i>Contacter</a></p>
         </div>
     </div>
