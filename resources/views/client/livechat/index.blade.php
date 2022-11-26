@@ -7,7 +7,9 @@
   <div class="wrapper">
     @include('client.livechat.components.list-conversation')
     @include('client.livechat.components.chat-area')
-    @include('client.livechat.components.detail-side')
+    @if (isset($conversation))
+      @include('client.livechat.components.detail-side')
+    @endif
   </div>
 </div>
 @endsection
