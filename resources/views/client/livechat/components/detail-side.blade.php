@@ -1,12 +1,20 @@
 <div class="detail-area">
+    @php
+        $receiver = $conversation->receiver;
+        // If current user is a conversation receiver, then receiver may be a sender
+        if($receiver->id === auth()->user()->id)
+        {
+            $receiver = $conversation->sender;
+        }
+    @endphp
     <div class="detail-area-header">
-       @if(!is_null($conversation->receiver?->medias))
-            <img class="msg-profile group" src="{{ asset('assets/client/logos/' . $conversation->receiver?->medias->url) }}" alt="logo">
+       @if(!is_null($receiver->medias))
+            <img class="msg-profile group" src="{{ asset('assets/client/logos/' . $receiver->medias->url) }}" alt="logo">
         @else
             <img class="msg-profile group" src="{{ asset('assets/client/logos/default.png') }}" alt="logo">
         @endif
-        <div class="detail-title">{{ ($conversation->receiver?->role == "Investisseur") ? $conversation->receiver?->investor_username : $conversation->receiver?->enterprise_name }}</div>
-        <div class="detail-subtitle">Rejoint {{ \Carbon\Carbon::parse($conversation->receiver?->created_at)->diffForHumans() }}</div>
+        <div class="detail-title">{{ ($receiver->role == "Investisseur") ? $receiver->investor_username : $receiver->enterprise_name }}</div>
+        <div class="detail-subtitle">Rejoint {{ \Carbon\Carbon::parse($receiver->created_at)->diffForHumans() }}</div>
         <div class="detail-buttons">
             <button class="detail-button">
                 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor"
