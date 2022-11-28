@@ -72,7 +72,8 @@ class Conversation extends Model
     public function scopeAllConversations($query)
     {
             return $query->active()->where('from_id', auth()->user()->id)
-                                   ->orWhere('to_id', auth()->user()->id);
+                                   ->orWhere('to_id', auth()->user()->id)
+                                   ->orderBy('updated_at', 'desc');
     }
 
     /**
