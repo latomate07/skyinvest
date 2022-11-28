@@ -45,4 +45,12 @@
             </div>
         </div>
     </div>
+    <div class="contractWithTheReceiver">
+        <div class="detail-change" style="flex-direction: column; line-height:2">
+            Contrat établi avec {{ ($receiver->role == "Investisseur") ? $receiver->investor_username : $receiver->enterprise_name }}
+            <div id="contract">
+                Aucun contrat trouvé.
+            </div>
+        </div>
+    </div>
 </div>
