@@ -20,7 +20,7 @@ return new class extends Migration
             $table->boolean('is_seen')->default(false);
 
             $table->unsignedBigInteger('conversation_id');
-            $table->foreign('conversation_id')->references('id')->on('conversations_messages');
+            $table->foreign('conversation_id')->references('id')->on('conversations');
             $table->unsignedBigInteger('from_id');
             $table->unsignedBigInteger('to_id');
             $table->foreign('from_id')->references('id')->on('users');
