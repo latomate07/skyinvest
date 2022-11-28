@@ -3213,6 +3213,7 @@ img {
     display: flex;
     flex-direction: column;
     overflow: auto;
+    justify-content: space-between;
 }
 .chat-area-header {
     display: flex;
