@@ -4,9 +4,17 @@
         <h3 style="text-align: center">Votre conversation s'affichera ici.</h3>    
     </div>
 @else
+@php
+    $receiver = $conversation->receiver;
+    // If current user is a conversation receiver, then receiver may be a sender
+    if($receiver->id === auth()->user()->id)
+    {
+        $receiver = $conversation->sender;
+    }
+@endphp
 <div class="chat-area">
     <div class="chat-area-header">
-        <div class="chat-area-title">Conversation avec {{ ($conversation->receiver?->role == "Investisseur") ? $conversation->receiver?->investor_username : $conversation->receiver?->enterprise_name }}</div>
+        <div class="chat-area-title">Conversation avec {{ ($receiver->role == "Investisseur") ? $receiver->investor_username : $receiver->enterprise_name }}</div>
     </div>
     <div class="chat-area-main">
         <div class="chat-msg">
