@@ -144,7 +144,7 @@
                         </div>
                         <div class="process">
                             <input type="submit" class="btn" value="Investir">
-                            <a class="contactme" href="javascript:void(0)">Envoyer un message</a>
+                            <a class="contactme" href="{{ route('conversations.create', $project->user->id) }}">Envoyer un message</a>
                         </div>
                     </form>
                 </div>
