@@ -12,4 +12,5 @@
     @endif
   </div>
 </div>
+@vite('resources/js/app.js')
 @endsection
