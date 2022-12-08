@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\Client\ProjectController;
 use App\Http\Controllers\Conversations\ConversationController;
+use App\Http\Controllers\Conversations\ConversationMessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
@@ -73,6 +74,9 @@ Route::group(['middleware' => 'auth'], function() {
         // Create New conversation
         Route::get('/new/{userID}', [ConversationController::class, 'create'])->name('conversations.create');
     });
+
+    // Send message
+    Route::post('/private/send-new-message', [ConversationMessageController::class, 'store'])->name('message.store');
 });
 //-- Show project
 Route::get('/projet/{id}', [ProjectController::class, 'show'])->name('client.project.show');
