@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\Client\ProjectController;
 use App\Http\Controllers\Conversations\ConversationController;
@@ -86,3 +87,7 @@ Route::get('profil/{id}', [ProfilController::class, 'index'])->name('client.show
 /**************** COMMON FUNCTIONNALITIES ROUTES **********/
 Route::post('/ajax/livesearch', [ProjectController::class, 'liveSearch'])->name('ajax.search');
 
+/**************** PAYMENTS STRIPE ROUTES **********/
+Route::group(['prefix' => 'stripe', 'middleware' => 'auth'], function () {
+    Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('stripe.checkout');
+});
