@@ -7,49 +7,33 @@ use Inertia\Inertia;
 use App\Models\Project;
 use App\Models\ProjectLikes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
-    public function showHomePage()
+    public function index(Request $request)
     {
-        $projects = Project::all();
-        $projects_recently_published = Project::latest()->get();
-        $user = auth()->check() ? User::where('id', auth()->user()->id)->first() : '';
-
-        if($user !== '')
-        {
-            $projects_liked = $user->project_liked()
-                                ->where('is_liked', 'yes')
-                                ->get();
-            $show_projects_liked = [];
-            foreach($projects_liked as $project_liked)
-            {
-            $show_project_liked = Project::where('id', $project_liked->likeable_id)
-                                    ->latest()
-                                    ->first();
-            array_push($show_projects_liked, $show_project_liked);
-            }
+        $projects = Project::with([
+                                'medias',
+                                'user' => function($user) {
+                                    $user->with('medias');
+                                }
+                            ])
+                            ->when($request->has('need') && $request->need == 'recent', function($query) use($request) {
+                                $query->orderBy('id', 'DESC');
+                            })
+                            ->get();
+        // Get current user projects liked
+        if($request->has('need') && $request->need == 'liked') {
+            $projects = User::find(Auth::user()?->id)?->project_liked()->where('is_liked', 'yes')->get();
         }
-    
-        return view('home', [
-            'projects' => $projects,
-            'projects_liked' => $show_projects_liked ?? [],
-            'latest_projects' => $projects_recently_published
+
+        return Inertia::render('Home', [
+            'isLogin'  => Auth::check(),
+            'user'     => User::with('medias')->firstWhere('id', Auth::user()?->id),
+            'projects' => fn() => $projects
         ]);
-    }
-
-    /**
-     * Get and Send Project User needs
-     */
-    public function switchProjects(Request $request)
-    {
-        if($request->has('needAllProject'))
-        {
-            $projects = Project::all();
-            return response()->json($projects, 200);
-        }
-
-        return response()->json(Project::all(), 200);
     }
 
     /**

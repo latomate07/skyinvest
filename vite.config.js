@@ -13,6 +13,9 @@ export default defineConfig({
                 transformAssetUrls: {
                     base: null,
                     includeAbsolute: false,
+                },
+                compilerOptions: {
+                    isCustomElement: (tag) => ['lottie-player'].includes(tag),
                 }
             },
         }),

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Home
-Route::get('/', [HomeController::class, 'showHomePage'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'guest'], function() {
     Route::get('/connexion', [AuthController::class, 'showLoginPage'])->name('login');
@@ -58,8 +58,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('/project/publication/delete/{id}', [ProjectController::class, 'delete'])->name('client.project.delete');
     //-- Like project
     Route::post('/project/likethisone', [ProjectController::class, 'projectLiked'])->name('client.project.like');
-    //-- Get Projects User needs
-    Route::get('/project/wished', [HomeController::class, 'switchProjects'])->name('client.project.wished');
 
     //-- Store Investor Entreprise Liked
     Route::post('profil/userLikeThisEntreprise', [ProfilController::class, 'saveEntrepriseToThisUser'])->name('userLikeThisEntreprise');
